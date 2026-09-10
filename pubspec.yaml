@@ -1,0 +1,76 @@
+name: mcare_copy2
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  
+  cupertino_icons: ^1.0.8
+  flutter_screenutil: ^5.9.3
+  get: ^4.7.3
+  flutter_svg: ^2.2.3
+  dotted_line: ^3.2.3
+  flutter_switch: ^0.3.2
+  animated_segmented_tab_control: ^2.0.1
+  dotted_border: ^3.1.0
+  smooth_page_indicator: ^1.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+  flutter_lints: ^5.0.0
+
+
+flutter:
+
+  
+  uses-material-design: true
+
+  
+  assets:
+    - assets/fonts/
+    - assets/images/
+    - assets/images/specialist/
+    - assets/images/hospital_list/
+    - assets/images/chat/
+    - assets/images/medication_ramainder/
+    - assets/images/articel/
+    - assets/images/articel/hot_topic/
+    - assets/images/articel/article_list/
+    - assets/images/shoppings/
+    - assets/logo/
+    - assets/icons/
+    - assets/icons/svg/
+    - assets/images/onboarding/
+    
+  fonts:
+      - family: Khula
+        fonts:
+          - asset: assets/fonts/Khula-Light.ttf
+            weight: 300
+          - asset: assets/fonts/Khula-Regular.ttf
+            weight: 400
+          - asset: assets/fonts/Khula-SemiBold.ttf
+            weight: 600
+          - asset: assets/fonts/Khula-Bold.ttf
+            weight: 700
+          - asset: assets/fonts/Khula-ExtraBold.ttf
+            weight: 800
+    
+
+# additional resources links  
+# {
+# for svg icons : https://www.svgrepo.com/vectors/call/2
+# for Global Search :  ctrl + shift + f 
+#
+# }
