@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/primary_button.dart';
 import 'package:mcare_copy2/features/authentication/login/verification_success.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
@@ -19,19 +20,17 @@ class _LoginState extends State<Login> {
       body: DefaultTabController(
         length: 2,
         child: Padding(
-          padding: EdgeInsets.only(top: 60.h, right: 28.w, left: 28.w),
+          padding: EdgeInsets.only(top: 40.h, right: 28.w, left: 28.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               /// Back button
               IconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  'assets/icons/back_arrow.png',
-                  width: 24.w,
-                  height: 24.h,
-                ),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: () => Get.back(),
+                icon: Icon(Icons.chevron_left, color: MColors.iconColor1),
               ),
               SizedBox(height: 32.h),
 
@@ -144,12 +143,7 @@ class Email extends StatelessWidget {
               MPButton(
                 label: 'Login',
                 pressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const VerificationSuccess(),
-                    ),
-                  );
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const VerificationSuccess()));
                 },
               ),
               SizedBox(height: 16.h),
@@ -214,19 +208,12 @@ class Mobile extends StatelessWidget {
                       children: [
                         Text(
                           'Pilih',
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 14.sp,
-                          ),
+                          style: TextStyle(color: Colors.black87, fontSize: 14.sp),
                         ),
                         SizedBox(width: 4.w),
                       ],
                     ),
-                    icon: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black54,
-                      size: 18.sp,
-                    ),
+                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.black54, size: 18.sp),
                     items: const [],
                     onChanged: (value) {
                       // Handle country selection
@@ -236,11 +223,7 @@ class Mobile extends StatelessWidget {
               ),
 
               // Middle Section: Vertical Divider Line
-              Container(
-                width: 1.w,
-                height: 24.h,
-                color: MColors.secondaryColor,
-              ),
+              Container(width: 1.w, height: 24.h, color: MColors.secondaryColor),
 
               // Right Section: Phone Number Input Field
               Expanded(
@@ -249,14 +232,8 @@ class Mobile extends StatelessWidget {
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                     hintText: 'Enter phone number',
-                    hintStyle: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 14.sp,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                      vertical: 10.h,
-                    ),
+                    hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14.sp),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
                     border: InputBorder.none,
                     enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
@@ -284,12 +261,7 @@ class Mobile extends StatelessWidget {
               MPButton(
                 label: 'Login',
                 pressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const VerificationSuccess(),
-                    ),
-                  );
+                  Get.toNamed('/verificationSuccess');
                 },
               ),
               SizedBox(height: 16.h),
@@ -328,12 +300,7 @@ class LabelText2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: TextStyle(
-        fontFamily: 'Khula',
-        fontWeight: FontWeight.w400,
-        fontSize: 14.sp,
-        color: MColors.primaryColor,
-      ),
+      style: TextStyle(fontFamily: 'Khula', fontWeight: FontWeight.w400, fontSize: 14.sp, color: MColors.primaryColor),
     );
   }
 }
@@ -346,61 +313,7 @@ class LabelText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: TextStyle(
-        fontFamily: 'Khula',
-        fontWeight: FontWeight.w600,
-        fontSize: 16.sp,
-        color: MColors.primaryColor,
-      ),
+      style: TextStyle(fontFamily: 'Khula', fontWeight: FontWeight.w600, fontSize: 16.sp, color: MColors.primaryColor),
     );
   }
 }
-
-
-
-// body: DefaultTabController(
-//         length: 3,
-//         child: Column(
-//           children: [
-//             Container(
-//               width: double.infinity - 20,
-//               height: 150,
-//               color: Colors.amberAccent,
-//             ),
-//             TextField(decoration: InputDecoration(hintText: "From tab bar")),
-//             TabBar(
-//               indicatorSize: TabBarIndicatorSize.tab,
-//               indicatorColor: MColors.primaryColor,
-//               tabs: [
-//                 Tab(text: "Tab-1"),
-//                 Tab(text: "Tab-2"),
-//                 Tab(text: "Tab-3"),
-//               ],
-//             ),
-//             Expanded(
-//               child: TabBarView(
-//                 children: [
-//                   Container(
-//                     margin: EdgeInsets.all(8),
-//                     width: double.infinity,
-//                     color: Colors.red.withAlpha(150),
-//                     child: Center(child: Text("Tab-1")),
-//                   ),
-//                   Container(
-//                     margin: EdgeInsets.all(8),
-//                     width: double.infinity,
-//                     color: Colors.yellowAccent.withAlpha(150),
-//                     child: Center(child: Text("Tab-2")),
-//                   ),
-//                   Container(
-//                     margin: EdgeInsets.all(8),
-//                     width: double.infinity,
-//                     color: Colors.greenAccent.withAlpha(150),
-//                     child: Center(child: Text("Tab-3")),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),

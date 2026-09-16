@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/primary_button.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -11,13 +13,9 @@ class VerificationSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.only(
-          left: 28.w,
-          right: 28.w,
-          top: 320.h,
-          bottom: 70.h,
-        ),
+        padding: EdgeInsets.only(left: 28.w, right: 28.w, top: 320.h, bottom: 70.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,10 +54,7 @@ class VerificationSuccess extends StatelessWidget {
               child: MPButton(
                 label: 'Continue',
                 pressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Home()),
-                  );
+                  Get.offAllNamed('/home');
                 },
               ),
             ),

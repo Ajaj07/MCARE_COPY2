@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/primary_button.dart';
-import 'package:mcare_copy2/features/authentication/verification/phone_verification.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
+import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
+///--------------[Direct Screen Util]-----------------------
 class EmailVerification extends StatelessWidget {
   const EmailVerification({super.key});
 
@@ -11,196 +14,81 @@ class EmailVerification extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.only(top: 60, left: 28, right: 28),
+        padding: EdgeInsets.only(top: 35.h, left: 28.w, right: 28.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// Back Button Row
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.arrow_back_ios),
-                SizedBox(width: 12),
-                Text(
-                  'Register',
-                  style: TextStyle(
-                    fontFamily: 'Khula',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    color: Color(0XFF090909),
-                  ),
-                ),
+                IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.chevron_left)),
+                SizedBox(width: 5.w),
+                Text('Register', style: MTextTheme.bold.copyWith(color: const Color(0XFF090909))),
               ],
             ),
-            SizedBox(height: 147),
+            SizedBox(height: 147.h),
 
             /// Verification text
             Text(
               'Enter the 4-digit verification code (OTP) sent to your email',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Khula',
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
-                color: Color(0XFF090909),
-              ),
+              style: MTextTheme.regular,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             /// email
             Align(
               alignment: Alignment.center,
-              child: Text(
-                'info@gmail.com',
-                style: TextStyle(
-                  fontFamily: 'Khula',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                  color: MColors.primaryColor,
-                ),
-              ),
+              child: Text('info@gmail.com', style: MTextTheme.bold),
             ),
-            // SizedBox(height: 50),
 
             /// verification OTP
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 36, vertical: 50),
+              padding: EdgeInsets.symmetric(horizontal: 36.w, vertical: 50.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                spacing: 20,
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      alignment: Alignment(0, 0),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(
-                          color: MColors.secondaryColor,
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        '1',
-                        style: TextStyle(
-                          fontFamily: 'Khula',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 32,
-                          color: MColors.textSecondaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  // 2'nd
-                  Expanded(
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      alignment: Alignment(0, 0),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(
-                          color: MColors.secondaryColor,
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        '1',
-                        style: TextStyle(
-                          fontFamily: 'Khula',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 32,
-                          color: MColors.textSecondaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  // 3'rd Box
-                  Expanded(
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      alignment: Alignment(0, 0),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(
-                          color: MColors.secondaryColor,
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        '',
-                        style: TextStyle(
-                          fontFamily: 'Khula',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 32,
-                          color: MColors.textSecondaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  // 4'th Box
-                  Expanded(
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      alignment: Alignment(0, 0),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(
-                          color: MColors.secondaryColor,
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        '',
-                        style: TextStyle(
-                          fontFamily: 'Khula',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 32,
-                          color: MColors.textSecondaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                spacing: 20.w,
+                children: [_buildOtpBox('1'), _buildOtpBox('1'), _buildOtpBox(''), _buildOtpBox('')],
               ),
             ),
 
-            ///Continue Button
+            /// Continue Button
             MPButton(
               label: 'Continue',
               pressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PhoneVerification()),
-                );
+                Get.toNamed('/phoneVerification');
               },
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
-            ///  Resend text
+            /// Resend text
             Align(
               alignment: Alignment.center,
               child: Text(
                 'Resend in 60 seconds',
-                style: TextStyle(
-                  fontFamily: 'Khula',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  color: MColors.textSecondaryColor,
-                ),
+                style: MTextTheme.regular.copyWith(color: MColors.textSecondaryColor),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildOtpBox(String text) {
+    return Expanded(
+      child: Container(
+        width: 60.w,
+        height: 60.h,
+        alignment: const Alignment(0, 0),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(4.r),
+          border: Border.all(color: MColors.secondaryColor, width: 1.w),
+        ),
+        child: Text(text, style: MTextTheme.labelMedium.copyWith(fontSize: 32.sp)),
       ),
     );
   }

@@ -75,6 +75,7 @@ class PhoneContainer extends StatelessWidget {
 */
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
 ///-------------------------[With Screen Util]---------------------
 class PhoneContainer extends StatelessWidget {
@@ -89,10 +90,7 @@ class PhoneContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'No Phone*',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp, color: MColors.primaryColor),
-          ),
+          Text('No Phone*', style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600)),
           SizedBox(height: 12.h),
           Container(
             height: 44.h,
@@ -110,17 +108,14 @@ class PhoneContainer extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        'Pilih',
-                        style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: MColors.textThirtyColor),
-                      ),
+                      Text('Pilih', style: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor)),
                       Icon(Icons.arrow_drop_down, size: 20.sp),
                     ],
                   ),
                 ),
 
                 // Divider
-                Container(width: 1.w, height: 24.h, color: MColors.secondaryColor),
+                Container(width: 1.w, height: 24.h, color: Colors.black),
 
                 // Phone number input
                 Expanded(
@@ -129,11 +124,7 @@ class PhoneContainer extends StatelessWidget {
                     style: TextStyle(fontSize: 14.sp),
                     decoration: InputDecoration(
                       hintText: 'Enter phone number',
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        color: MColors.textThirtyColor,
-                      ),
+                      hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
                       contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
                       border: InputBorder.none,
                       errorBorder: InputBorder.none,

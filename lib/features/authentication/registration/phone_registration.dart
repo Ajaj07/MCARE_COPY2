@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mcare_copy2/utils/helpers/device_helpers.dart';
-
+import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 import '../../../common/widgets/Buttons/primary_button.dart';
+import '../../../common/widgets/TextField/text_field.dart';
 import '../../../utils/constants/colors.dart';
 import 'widgets/email_container.dart';
 import 'widgets/phone_container.dart';
 
-///-------------------[Without screen util]----------------------
+///--------------------------[without Screen Util] --------------------------
 /*
 class PhoneRegistration extends StatefulWidget {
   const PhoneRegistration({super.key});
@@ -19,7 +21,7 @@ class PhoneRegistration extends StatefulWidget {
 
 class _PhoneRegistrationState extends State<PhoneRegistration> {
   int selectedTab = 0;
-
+  String? selectedGender;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -40,13 +42,13 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
               children: [
                 /// Back Button
                 IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
+                  onPressed: () => Get.back(),
                   icon: const Icon(Icons.chevron_left),
                 ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 25),
 
                 /// Title
                 const Text(
@@ -59,7 +61,7 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                 /// Description
                 Text(
                   'You can connect with all healthcare facilities you\'ve previously visited',
-                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: MColors.textSecondaryColor),
+                  style: MTextTheme.labelMedium,
                 ),
 
                 const SizedBox(height: 14),
@@ -76,15 +78,15 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                   labelColor: MColors.primaryColor,
                   dividerHeight: 2,
                   dividerColor: MColors.secondaryColor,
-                  labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, fontFamily: 'Khula'),
-                  unselectedLabelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, fontFamily: 'Khula'),
+                  labelStyle: MTextTheme.bold,
+                  unselectedLabelStyle: MTextTheme.regular,
                   tabs: const [
                     Tab(text: "No Phone"),
                     Tab(text: "Email"),
                   ],
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
 
                 /// Dynamic Field
                 selectedTab == 0
@@ -93,88 +95,47 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                     /// Email
                     : EmailContainer(),
 
-                const SizedBox(height: 26),
+                const SizedBox(height: 20),
 
-                Text(
-                  'Full Name',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: MColors.primaryColor),
-                ),
+                Text('Full Name', style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600)),
                 SizedBox(height: 12),
 
                 /// Full Name
-                Container(
-                  width: double.infinity,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: MColors.secondaryColor, width: 1),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 14, bottom: 17.5),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        // labelText: "Full Name",
-                        hint: Text(
-                          'Enter Your Name',
-                          style: TextStyle(
-                            fontFamily: 'Khula',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: MColors.textThirtyColor,
-                          ),
-                        ),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
+                CustomField(
+                  hintText: "Enter Your Name",
+                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
                 ),
 
-                const SizedBox(height: 26),
-                Text(
-                  'Gender',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: MColors.primaryColor),
-                ),
+                const SizedBox(height: 20),
+                Text('Gender', style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600)),
                 const SizedBox(height: 12),
 
-                /// Gender
-                Container(
-                  width: double.infinity,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: MColors.secondaryColor, width: 1),
-                  ),
-                  child: DropdownButtonFormField<String>(
-                    value: null,
-                    hint: Text(
-                      'Choose your gender',
-                      style: TextStyle(
-                        fontFamily: 'Khula',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: MColors.textThirtyColor,
-                      ),
-                    ),
-                    icon: const Icon(Icons.keyboard_arrow_down, size: 20),
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 14),
-                      border: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                    ),
-                    items: const [
-                      DropdownMenuItem(value: 'male', child: Text('Male')),
-                      DropdownMenuItem(value: 'female', child: Text('Female')),
-                      DropdownMenuItem(value: 'other', child: Text('Other')),
-                    ],
-                    onChanged: (value) {
-                      // handle selection
-                    },
-                  ),
-                ),
                 ////
-                const SizedBox(height: 26),
+                CustomField(
+                  readOnly: true,
+                  hintText: 'Select gender',
+                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
+                  controller: TextEditingController(text: selectedGender), // or manage via a real controller
+                  trailing: const Icon(Icons.keyboard_arrow_down, size: 20),
+                  onTap: () async {
+                    final result = await showModalBottomSheet<String>(
+                      context: context,
+                      builder: (context) => SafeArea(
+                        child: Wrap(
+                          children: [
+                            'Male',
+                            'Female',
+                            'Other',
+                          ].map((g) => ListTile(title: Text(g), onTap: () => Navigator.pop(context, g))).toList(),
+                        ),
+                      ),
+                    );
+                    if (result != null) {
+                      setState(() => selectedGender = result);
+                    }
+                  },
+                ),
+                const SizedBox(height: 20),
                 Text(
                   'Date of birth',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: MColors.primaryColor),
@@ -182,44 +143,23 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                 const SizedBox(height: 12),
 
                 /// Date Of Birth
-                Container(
-                  width: double.infinity,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: MColors.secondaryColor, width: 1),
-                  ),
-                  child: TextFormField(
-                    readOnly: true,
-                    onTap: () async {
-                      final picked = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1900),
-                        lastDate: DateTime.now(),
-                      );
-                      // handle picked date
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Enter your date of birth',
-                      hintStyle: const TextStyle(
-                        fontFamily: 'Khula',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: MColors.textThirtyColor,
-                      ),
-                      suffixIcon: const Icon(Icons.calendar_month_outlined),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-                      border: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                    ),
-                  ),
+                CustomField(
+                  onTap: () async {
+                    final picked = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime.now(),
+                    );
+                  },
+                  readOnly: true,
+                  hintText: "Enter Your Date of Birth",
+                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
+                  trailing: Icon(Icons.calendar_month_outlined),
                 ),
 
                 ///
-                const SizedBox(height: 26),
+                const SizedBox(height: 20),
 
                 /// check box
                 Row(
@@ -248,7 +188,7 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                 /// Register Button
                 Padding(
                   padding: EdgeInsets.only(top: MDeviceHelper.getBottomNavigationBarHeight()),
-                  child: MPButton(label: 'Register'),
+                  child: MPButton(label: 'Register', pressed: () => Get.toNamed('/emailVerification')),
                 ),
                 SizedBox(height: 16),
                 Align(
@@ -277,9 +217,7 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
 }
 */
 
-///-------------------[With screen util]----------------------
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+///--------------------------[with Screen Util] --------------------------
 
 class PhoneRegistration extends StatefulWidget {
   const PhoneRegistration({super.key});
@@ -290,6 +228,23 @@ class PhoneRegistration extends StatefulWidget {
 
 class _PhoneRegistrationState extends State<PhoneRegistration> {
   int selectedTab = 0;
+  String? selectedGender;
+
+  // Kept as a stable controller instead of being recreated on every build
+  // (recreating it inline loses cursor state and leaks the old instance).
+  late final TextEditingController _genderController;
+
+  @override
+  void initState() {
+    super.initState();
+    _genderController = TextEditingController(text: selectedGender);
+  }
+
+  @override
+  void dispose() {
+    _genderController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -311,13 +266,13 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
               children: [
                 /// Back Button
                 IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: () => Get.back(),
                   icon: Icon(Icons.chevron_left, size: 24.sp),
                 ),
 
-                SizedBox(height: 32.h),
+                SizedBox(height: 25.h),
 
                 /// Title
                 Text(
@@ -330,7 +285,7 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                 /// Description
                 Text(
                   'You can connect with all healthcare facilities you\'ve previously visited',
-                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14.sp, color: MColors.textSecondaryColor),
+                  style: MTextTheme.labelMedium,
                 ),
 
                 SizedBox(height: 14.h),
@@ -347,102 +302,67 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                   labelColor: MColors.primaryColor,
                   dividerHeight: 2.h,
                   dividerColor: MColors.secondaryColor,
-                  labelStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, fontFamily: 'Khula'),
-                  unselectedLabelStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, fontFamily: 'Khula'),
+                  labelStyle: MTextTheme.bold,
+                  unselectedLabelStyle: MTextTheme.regular,
                   tabs: const [
                     Tab(text: "No Phone"),
                     Tab(text: "Email"),
                   ],
                 ),
 
-                SizedBox(height: 24.h),
+                SizedBox(height: 20.h),
 
                 /// Dynamic Field
                 selectedTab == 0
                     /// Phone
-                    ? const PhoneContainer()
+                    ? PhoneContainer()
                     /// Email
-                    : const EmailContainer(),
+                    : EmailContainer(),
 
-                SizedBox(height: 26.h),
+                SizedBox(height: 20.h),
 
-                Text(
-                  'Full Name',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp, color: MColors.primaryColor),
-                ),
+                Text('Full Name', style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600)),
                 SizedBox(height: 12.h),
 
                 /// Full Name
-                Container(
-                  width: double.infinity,
-                  height: 44.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.r),
-                    border: Border.all(color: MColors.secondaryColor, width: 1.w),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 14.w, bottom: 17.5.h),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter Your Name',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Khula',
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          color: MColors.textThirtyColor,
-                        ),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
+                CustomField(
+                  hintText: "Enter Your Name",
+                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
                 ),
 
-                SizedBox(height: 26.h),
-                Text(
-                  'Gender',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp, color: MColors.primaryColor),
-                ),
+                SizedBox(height: 20.h),
+                Text('Gender', style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600)),
                 SizedBox(height: 12.h),
 
-                /// Gender
-                Container(
-                  width: double.infinity,
-                  height: 44.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.r),
-                    border: Border.all(color: MColors.secondaryColor, width: 1.w),
-                  ),
-                  child: DropdownButtonFormField<String>(
-                    value: null,
-                    hint: Text(
-                      'Choose your gender',
-                      style: TextStyle(
-                        fontFamily: 'Khula',
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        color: MColors.textThirtyColor,
+                ////
+                CustomField(
+                  readOnly: true,
+                  hintText: 'Select gender',
+                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
+                  controller: _genderController,
+                  trailing: Icon(Icons.keyboard_arrow_down, size: 20.sp),
+                  onTap: () async {
+                    final result = await showModalBottomSheet<String>(
+                      context: context,
+                      builder: (context) => SafeArea(
+                        child: Wrap(
+                          children: [
+                            'Male',
+                            'Female',
+                            'Other',
+                          ].map((g) => ListTile(title: Text(g), onTap: () => Navigator.pop(context, g))).toList(),
+                        ),
                       ),
-                    ),
-                    icon: Icon(Icons.keyboard_arrow_down, size: 20.sp),
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 14.w),
-                      border: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                    ),
-                    items: const [
-                      DropdownMenuItem(value: 'male', child: Text('Male')),
-                      DropdownMenuItem(value: 'female', child: Text('Female')),
-                      DropdownMenuItem(value: 'other', child: Text('Other')),
-                    ],
-                    onChanged: (value) {
-                      // handle selection
-                    },
-                  ),
+                    );
+                    if (result != null) {
+                      setState(() {
+                        selectedGender = result;
+                        _genderController.text = result;
+                      });
+                    }
+                  },
                 ),
-
-                SizedBox(height: 26.h),
+                SizedBox(height: 20.h),
                 Text(
                   'Date of birth',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp, color: MColors.primaryColor),
@@ -450,43 +370,23 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                 SizedBox(height: 12.h),
 
                 /// Date Of Birth
-                Container(
-                  width: double.infinity,
-                  height: 44.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.r),
-                    border: Border.all(color: MColors.secondaryColor, width: 1.w),
-                  ),
-                  child: TextFormField(
-                    readOnly: true,
-                    onTap: () async {
-                      final picked = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1900),
-                        lastDate: DateTime.now(),
-                      );
-                      // handle picked date
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Enter your date of birth',
-                      hintStyle: TextStyle(
-                        fontFamily: 'Khula',
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        color: MColors.textThirtyColor,
-                      ),
-                      suffixIcon: Icon(Icons.calendar_month_outlined, size: 24.sp),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 14.w),
-                      border: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                    ),
-                  ),
+                CustomField(
+                  onTap: () async {
+                    final picked = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime.now(),
+                    );
+                  },
+                  readOnly: true,
+                  hintText: "Enter Your Date of Birth",
+                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
+                  trailing: Icon(Icons.calendar_month_outlined, size: 20.sp),
                 ),
 
-                SizedBox(height: 26.h),
+                ///
+                SizedBox(height: 20.h),
 
                 /// check box
                 Row(
@@ -495,8 +395,11 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                   spacing: 5.w,
                   children: [
                     Checkbox(
-                      side: const BorderSide(color: MColors.secondaryColor),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0.r)),
+                      side: BorderSide(
+                        color: MColors.secondaryColor, // Your custom border color
+                        // width: 2.0, // Your custom border width
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.r)),
                       value: false,
                       onChanged: (val) {},
                     ),
@@ -516,14 +419,14 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                 /// Register Button
                 Padding(
                   padding: EdgeInsets.only(top: MDeviceHelper.getBottomNavigationBarHeight()),
-                  child: MPButton(label: 'Register'),
+                  child: MPButton(label: 'Register', pressed: () => Get.toNamed('/emailVerification')),
                 ),
                 SizedBox(height: 16.h),
                 Align(
                   alignment: Alignment.center,
                   child: Text.rich(
                     style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, color: MColors.textSecondaryColor),
-                    const TextSpan(
+                    TextSpan(
                       text: " Already have an account? ",
                       children: [
                         TextSpan(

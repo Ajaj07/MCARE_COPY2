@@ -3,6 +3,9 @@ import 'dart:ui';
 class MColors {
   MColors._();
 
+  /// icon color
+  static const iconColor1 = Color(0XFF334155);
+
   /// main Colors
   static const primaryColor = Color(0xFF26408B);
   static const secondaryColor = Color(0xFFA6CFD5);

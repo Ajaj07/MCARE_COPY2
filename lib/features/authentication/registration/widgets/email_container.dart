@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
+import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
 ///-----------------------[Without Screen Util]----------------------
 /*
@@ -68,10 +69,7 @@ class EmailContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'Email',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp, color: MColors.primaryColor),
-          ),
+          Text('Email', style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600)),
           SizedBox(height: 12.h),
           Container(
             width: double.infinity,
@@ -88,12 +86,7 @@ class EmailContainer extends StatelessWidget {
               child: TextFormField(
                 decoration: InputDecoration(
                   hintText: 'Enter Your email', // Switched to hintText
-                  hintStyle: TextStyle(
-                    fontFamily: 'Khula',
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: MColors.textThirtyColor,
-                  ),
+                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
                   border: InputBorder.none,
                 ),
               ),
