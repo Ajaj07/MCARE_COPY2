@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
+
+import '../../../../../common/routes/app_routes.dart';
 
 class SucessScreen extends StatelessWidget {
   const SucessScreen({super.key});
@@ -18,24 +21,12 @@ class SucessScreen extends StatelessWidget {
               Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/icons/sucess.png',
-                    width: 172.26,
-                    height: 155.57,
-                    fit: BoxFit.fill,
-                  ),
-                ],
+                children: [Image.asset('assets/icons/sucess.png', width: 172.26, height: 155.57, fit: BoxFit.fill)],
               ),
               SizedBox(height: 40.72),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Appointments have been made ',
-                    style: MTextTheme.semiBold,
-                  ),
-                ],
+                children: [Text('Appointments have been made ', style: MTextTheme.semiBold)],
               ),
               SizedBox(height: 20),
               Row(
@@ -52,21 +43,16 @@ class SucessScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 59, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(
-                        width: 1,
-                        color: MColors.secondaryColor,
+                  InkWell(
+                    onTap: () => Get.offAllNamed(AppRoutes.home, arguments: {'tabIndex': 2}),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 59, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(width: 1, color: MColors.secondaryColor),
                       ),
-                    ),
-                    child: Text(
-                      'Go todetails',
-                      style: MTextTheme.semiBold.copyWith(
-                        color: MColors.primaryColor,
-                      ),
+                      child: Text('Go todetails', style: MTextTheme.semiBold.copyWith(color: MColors.primaryColor)),
                     ),
                   ),
                 ],

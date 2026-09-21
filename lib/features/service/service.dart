@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mcare_copy2/utils/constants/colors.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/features/home/controller/home_screen_controller.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
+///-----------------[Without Screen Util]-----------------
+
+/*
 class Service extends StatelessWidget {
   const Service({super.key});
 
@@ -12,7 +16,12 @@ class Service extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        leading: IconButton(onPressed: () {}, icon: Image.asset('assets/icons/back_arrow.png')),
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () => Get.find<HomeScreenController>().updateIndex(index: 0),
+          icon: Icon(Icons.chevron_left),
+        ),
         title: Text('Services', style: MTextTheme.headlineMedium.copyWith(fontSize: 16)),
         centerTitle: true,
       ),
@@ -259,3 +268,40 @@ Widget buttonContainer({required String data, Color color = Colors.blueAccent}) 
   ),
   child: Text(data),
 );
+*/
+///-----------------[Wit Screen Util]-----------------
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'widgets/service_card.dart';
+
+class Service extends StatelessWidget {
+  const Service({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () => Get.find<HomeScreenController>().updateIndex(index: 0),
+          icon: const Icon(Icons.chevron_left),
+        ),
+        title: Text('Services', style: MTextTheme.headlineMedium.copyWith(fontSize: 16.sp)),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(left: 28.w, right: 28.w, top: 30.h),
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.start,
+          spacing: 16.w,
+          runSpacing: 23.h,
+          children: [for (final s in kServices) ServiceCard(service: s)],
+        ),
+      ),
+    );
+  }
+}

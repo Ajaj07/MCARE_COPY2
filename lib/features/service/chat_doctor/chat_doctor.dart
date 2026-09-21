@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
+import 'widgets/chat_tile.dart';
 
+///----------------------[WithOut Screen Util]-----------------------
+/*
 class ChatDoctor extends StatelessWidget {
   const ChatDoctor({super.key});
 
@@ -13,8 +18,10 @@ class ChatDoctor extends StatelessWidget {
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {},
-          icon: Image.asset('assets/icons/back_arrow.png', width: 24, height: 24, fit: BoxFit.cover),
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () => Get.back(),
+          icon: Icon(Icons.chevron_left, color: MColors.iconColor1),
         ),
         centerTitle: false,
         title: Text('Chat Doctor', style: MTextTheme.regular),
@@ -97,6 +104,109 @@ class ChatDoctor extends StatelessWidget {
     );
   }
 }
+*/
+
+///----------------------[With Scren Util]----------------------------
+class ChatDoctor extends StatelessWidget {
+  const ChatDoctor({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Structural data list for doctors to keep code clean and maintainable
+    final List<Map<String, dynamic>> doctors = [
+      {
+        'image': 'assets/images/chat/luci.png',
+        'name': 'Dr. Luca Rossi',
+        'designation': 'Cardiology Specialist',
+        'experience': 3,
+        'available': 'Wed-Sat',
+      },
+      {
+        'image': 'assets/images/chat/macro.png',
+        'name': 'Dr. Marco ferrari',
+        'designation': 'Orthopedics Speacialist',
+        'experience': 3,
+        'available': 'Wed-Tue',
+      },
+      {
+        'image': 'assets/images/chat/sofia.png',
+        'name': 'Dr. Sofia Muller',
+        'designation': 'Dermetology Speacialist',
+        'experience': 6,
+        'available': 'Wed-Sat',
+      },
+      {
+        'image': 'assets/images/chat/rajesh.png',
+        'name': 'Dr. Rajesh Patel',
+        'designation': 'General surgury',
+        'experience': 2,
+        'available': 'Wed-Tue',
+      },
+      {
+        'image': 'assets/images/chat/anna.png',
+        'name': 'Dr. Anna Schmidt',
+        'designation': 'General Practitioner',
+        'experience': 10,
+        'available': 'Wed-Sat',
+      },
+      {
+        'image': 'assets/images/chat/emma.png',
+        'name': 'Dr. Emma Andersen',
+        'designation': 'Specialisis Neurologist',
+        'experience': 4,
+        'available': 'Wed-Sat',
+      },
+      {
+        'image': 'assets/images/chat/fabian.png',
+        'name': 'Dr. Fabian Weber',
+        'designation': 'General Surgury',
+        'experience': 6,
+        'available': 'Wed-Sat',
+      },
+    ];
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () => Get.back(),
+          icon: Icon(Icons.chevron_left, color: MColors.iconColor1),
+        ),
+        centerTitle: false,
+        title: Text('Chat Doctor', style: MTextTheme.regular),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
+        child: Column(
+          children: [
+            const DoctorSearchField(),
+            SizedBox(height: 20.h),
+            Expanded(
+              child: ListView.separated(
+                itemCount: doctors.length,
+                separatorBuilder: (context, index) => SizedBox(height: 28.h),
+                itemBuilder: (context, index) {
+                  final doctor = doctors[index];
+                  return ChatTile(
+                    image: doctor['image'],
+                    name: doctor['name'],
+                    designation: doctor['designation'],
+                    experience: doctor['experience'],
+                    available: doctor['available'],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class DoctorSearchField extends StatelessWidget {
   const DoctorSearchField({super.key, this.controller, this.onChanged});
@@ -107,7 +217,7 @@ class DoctorSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48,
+      height: 48.h,
       decoration: BoxDecoration(
         color: const Color(0xFFF9F9F9),
         borderRadius: BorderRadius.circular(12),
@@ -116,91 +226,15 @@ class DoctorSearchField extends StatelessWidget {
       child: TextField(
         controller: controller,
         onChanged: onChanged,
-        style: const TextStyle(fontSize: 15, color: Colors.black87),
-        decoration: const InputDecoration(
+        style: TextStyle(fontSize: 15.sp, color: Colors.black87),
+        decoration: InputDecoration(
           isDense: true,
           border: InputBorder.none,
           hintText: 'Find a doctor',
-          hintStyle: TextStyle(color: MColors.textThirtyColor, fontSize: 14, fontFamily: 'Khula'),
-          prefixIcon: Icon(Icons.search, color: MColors.textThirtyColor, size: 22),
+          hintStyle: TextStyle(color: MColors.textThirtyColor, fontSize: 14.sp, fontFamily: 'Khula'),
+          prefixIcon: Icon(Icons.search, color: MColors.textThirtyColor, size: 22.sp),
           contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         ),
-      ),
-    );
-  }
-}
-
-class ChatTile extends StatelessWidget {
-  const ChatTile({
-    super.key,
-    required this.image,
-    required this.name,
-    required this.desiganation,
-    required this.experiance,
-    required this.avaialbe,
-  });
-  final String image, name, desiganation, avaialbe;
-  final int experiance;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          /// profile image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: Image.asset(image.toString(), width: 64, height: 64, fit: BoxFit.fill),
-          ),
-
-          SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              // mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              // spacing: 10,
-              children: [
-                // name
-                Text(name.toString(), style: MTextTheme.semiBold),
-                // Desiganation
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${desiganation.toString()} \t',
-                      style: MTextTheme.bodyMedium.copyWith(color: MColors.textSecondaryColor),
-                    ),
-
-                    Icon(Icons.circle, size: 5, color: MColors.textSecondaryColor),
-
-                    Text(
-                      ' ${experiance.toString()} Years',
-                      style: MTextTheme.bodyMedium.copyWith(color: MColors.textSecondaryColor),
-                    ),
-                  ],
-                ),
-                // availablity
-                Container(
-                  decoration: BoxDecoration(color: Color(0XFFDCFFDD), borderRadius: BorderRadius.circular(4)),
-                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                  child: Text(
-                    'Available on  ${avaialbe.toString()}',
-                    style: MTextTheme.regular.copyWith(fontSize: 10, color: MColors.textSecondaryColor),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          /// right side arrow
-          IconButton(
-            onPressed: () {},
-            icon: ImageIcon(AssetImage('assets/icons/right_hand.png'), color: MColors.textSecondaryColor),
-          ),
-        ],
       ),
     );
   }

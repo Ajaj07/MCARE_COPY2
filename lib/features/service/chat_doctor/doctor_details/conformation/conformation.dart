@@ -1,10 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
-
+import 'package:mcare_copy2/common/routes/app_routes.dart';
 import '../../../../../common/widgets/notification/notification_row.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/theme/widget/text_theme.dart';
@@ -19,7 +17,17 @@ class Conformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(surfaceTintColor: Colors.transparent, title: Text('Conformation'), centerTitle: true),
+      appBar: AppBar(
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.chevron_left),
+        ),
+        surfaceTintColor: Colors.transparent,
+        title: Text('Conformation'),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -51,7 +59,7 @@ class Conformation extends StatelessWidget {
               SwipeToCheckInButton(
                 onCompleted: () {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Done')));
-                  Get.to(const SucessScreen());
+                  Get.toNamed(AppRoutes.sucessScreen);
                 },
               ),
 

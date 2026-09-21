@@ -88,11 +88,6 @@ class MReviewCard extends StatelessWidget {
 */
 
 import 'package:flutter/gestures.dart'; // needed for TapGestureRecognizer
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:mcare_copy2/utils/constants/colors.dart';
-
-// import '../../../utils/theme/widget/text_theme_screen_util.dart';
 
 /// Review card matching Figma spec (node 87-2499 / 87-2500 / 87-2517 / 87-2518):
 /// - Frame: Hug 269 x Hug 163, radius 12, padding 20, gap 16, white bg

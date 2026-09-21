@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
 import '../../../common/widgets/Buttons/primary_button.dart';
 import '../../../common/widgets/images/comon_profile.dart';
 import '../../../utils/constants/colors.dart';
@@ -160,7 +161,6 @@ class VisitedCard extends StatelessWidget {
 /// with screen util
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../service/chat_doctor/doctor_details/screen/chat_screen.dart';
 import '../../service/chat_doctor/doctor_details/widgets/day_tile.dart';
 import '../../service/chat_doctor/doctor_details/widgets/hour_tile.dart';
 
@@ -181,8 +181,9 @@ class VisitedCard extends StatelessWidget {
         children: [
           // first row (Profile )
           InkWell(
+            onDoubleTap: () => Get.toNamed(AppRoutes.historyEmpty),
             onTap: () {
-              Get.to(ChatScreen());
+              Get.toNamed(AppRoutes.chatScreen);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -350,7 +351,9 @@ class VisitedCard extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor: MColors.primaryColor),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.chatScreen);
+                      },
                       child: Text('Submit', style: MTextTheme.semiBold.copyWith(fontSize: 16, color: Colors.white)),
                     ),
                   ),

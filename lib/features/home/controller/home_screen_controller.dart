@@ -20,6 +20,16 @@ import '../../service/shopping/screens/description/description_tabbar.dart';
 
 class HomeScreenController extends GetxController {
   RxInt bottom_nav_selected_index = 0.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    final args = Get.arguments;
+    if (args is Map && args['tabIndex'] != null) {
+      bottom_nav_selected_index.value = args['tabIndex'];
+    }
+  }
+
   final List<Widget> screens = [
     // const HomeScreen(),
     // const ChatDoctor(), // temporary debug
@@ -53,4 +63,8 @@ class HomeScreenController extends GetxController {
   ];
 
   final List<Widget> screens2 = [const HomeScreen(), const Service(), const History(), const Profile()];
+
+  void updateIndex({required int index}) {
+    bottom_nav_selected_index.value = index;
+  }
 }

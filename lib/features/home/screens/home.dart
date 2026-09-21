@@ -19,6 +19,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     // Register your GetX controller here
     final controller = Get.put(HomeScreenController());
+
     return Scaffold(
       backgroundColor: Colors.white,
       /* bottomNavigationBar: Obx(
