@@ -5,6 +5,9 @@ import 'package:mcare_copy2/common/widgets/Buttons/primary_button.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
+import '../../../common/widgets/Buttons/appbar_button.dart';
+import '../../../utils/constants/sizes.dart';
+
 ///-----------------------------[with out screen Util]-----------------------
 /*
 class PhoneVerification extends StatelessWidget {
@@ -145,27 +148,20 @@ class PhoneVerification extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        titleSpacing: 0,
+        leading: AppbarButton(icon: Icons.chevron_left, onPressed: () => Get.back()),
+        title: Text('Register', style: MTextTheme.bold.copyWith(color: const Color(0XFF090909))),
+      ),
       body: Padding(
-        padding: EdgeInsets.only(top: 35.h, left: 28.w, right: 28.w),
+        padding: EdgeInsets.symmetric(horizontal: MSizes.defaultHorizontalPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Back Button Row
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                  onPressed: () => Get.back(),
-                  icon: const Icon(Icons.chevron_left),
-                ),
-                SizedBox(width: 5.w),
-                Text('Register', style: MTextTheme.bold.copyWith(color: const Color(0XFF090909))),
-              ],
-            ),
-            SizedBox(height: 147.h),
+            Spacer(),
 
             /// Verification text
             Text(
@@ -203,6 +199,7 @@ class PhoneVerification extends StatelessWidget {
                 style: MTextTheme.regular.copyWith(color: MColors.textSecondaryColor),
               ),
             ),
+            Spacer(flex: 2),
           ],
         ),
       ),

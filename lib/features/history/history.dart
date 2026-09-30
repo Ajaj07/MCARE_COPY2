@@ -1,9 +1,12 @@
 import 'package:animated_segmented_tab_control/animated_segmented_tab_control.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/features/history/screens/upcomming.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
+import '../../common/widgets/Buttons/appbar_button.dart';
 import '../../utils/constants/colors.dart';
+import '../home/controller/home_screen_controller.dart';
 import 'screens/completed.dart';
 
 /// without screen util
@@ -100,9 +103,10 @@ class History extends StatelessWidget {
         appBar: AppBar(
           surfaceTintColor: Colors.transparent,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.arrow_back_ios_new, color: MColors.base1Color, size: 20.sp),
+          leading: AppbarButton(
+            icon: Icons.chevron_left,
+            color: MColors.iconColor1,
+            onPressed: () => Get.find<HomeScreenController>().updateIndex(index: 0),
           ),
           title: Text('History ', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
           centerTitle: true,

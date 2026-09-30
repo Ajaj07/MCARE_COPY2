@@ -13,14 +13,21 @@ class AppRoutes {
   static const String chatDoctor = '/chatDoctor';
   static const String doctorDetails = '/DoctorDetails';
   static const String conformation = '/Conformation';
-  static const String sucessScreen = '/SucessScreen';
+  static const String sucessScreen = '/sucessScreen';
   static const String history = '/History';
   static const String chatScreen = '/chatScreen';
-  static const String historyEmpty = '/HistoryEmpty';
-
-  // static const String hospitals = '/hospitals';
-  // static const String emergencyServices = '/emergencyServices';
-  // static const String articles = '/articles';
-  // static const String medicationReminder = '/medicationReminder';
-  // static const String specialization = '/specialization';
+  static const String historyEmpty = '/historyEmpty';
+  static const String listHospital = '/listHospital';
+  static const String detailHospital = '/detailHospital';
+  static const String hospitalMaps = '/hospitalMaps';
+  static const String medicationRemainder = '/medicationRemainder';
+  static const String medicationRemainderEmpty = '/medicationRemainderEmpty';
+  static const String detailAboutDrug = '/detailAboutDrug';
+  static const String medicationRemainderFill = '/medicationRemainderFill';
+  static const String articelList = '/articelList';
+  static const String article = '/Article';
+  static const String percriptionHistory = '/percriptionHistory';
+  static const String healthHistory = '/healthHistory';
+  static const String transactions = '/transactions';
+  static const String accountSetting = '/accountSetting';
 }

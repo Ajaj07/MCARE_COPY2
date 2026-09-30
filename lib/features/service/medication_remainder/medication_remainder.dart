@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
+import 'package:mcare_copy2/common/widgets/Buttons/appbar_button.dart';
 
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import '../../../utils/theme/widget/text_theme_screen_util.dart';
@@ -93,10 +96,7 @@ class MedicationRemainder extends StatelessWidget {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Image.asset('assets/icons/back_arrow.png', width: 24.w, height: 24.h, fit: BoxFit.cover),
-        ),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.textSecondaryColor, onPressed: () => Get.back()),
         title: Text('Medication Reminder', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
       ),
       body: Padding(
@@ -157,7 +157,10 @@ class MedicationRemainder extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 26.w, right: 26.w, bottom: 40.h),
-          child: const MPButton2(label: 'Add Medicine'),
+          child: SizedBox(
+            height: 51.h,
+            child: MPButton2(label: 'Add Medicine', callback: () => Get.toNamed(AppRoutes.medicationRemainderEmpty)),
+          ),
         ),
       ),
     );

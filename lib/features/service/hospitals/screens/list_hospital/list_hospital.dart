@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../utils/theme/widget/text_theme_screen_util.dart';
+import 'package:get/get.dart';
+import '../../../../../utils/theme/widget/text_theme_screen_util.dart';
 // import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 /// uses normal Text Them file
 
-import '../../../../utils/constants/colors.dart';
-import '../widgets/hospital_detail_card.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../widgets/hospital_detail_card.dart';
 
 /// without screen Util
 /*
@@ -120,37 +121,34 @@ class ListHospital extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset('assets/icons/back_arrow.png', width: 24.w, height: 24.h, fit: BoxFit.cover),
+      appBar: AppBar(
+        // Automatically handles back button spacing, but uses your custom icon
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.chevron_left),
+        ),
+        // titleSpacing ensures the search bar sits closely next to the back button
+        titleSpacing: 0,
+        title: Padding(
+          // We only need the right padding now to keep it away from the screen edge
+          padding: EdgeInsets.only(right: 26.w),
+          child: SizedBox(
+            height: 48.h, // Make sure 48.h fits inside your target device's AppBar height
+            child: SearchBar(
+              hintText: 'Search product or store',
+              hintStyle: WidgetStatePropertyAll(
+                TextStyle(color: MColors.textThirtyColor, fontSize: 14.sp, fontFamily: 'Khula'),
               ),
-              Flexible(
-                child: Container(
-                  padding: EdgeInsets.only(right: 26.w, left: 10.w),
-                  height: 48.h,
-                  child: SearchBar(
-                    hintText: 'Search product or store',
-                    hintStyle: WidgetStatePropertyAll(
-                      TextStyle(color: MColors.textThirtyColor, fontSize: 14.sp, fontFamily: 'Khula'),
-                    ),
-                    leading: Icon(Icons.search, color: MColors.textThirtyColor, size: 22.sp),
-                    elevation: WidgetStatePropertyAll(0),
-                    backgroundColor: WidgetStatePropertyAll(Color(0xFFF9F9F9)),
-                    side: WidgetStatePropertyAll(BorderSide(color: MColors.thirtyColor, width: 1.w)),
-                    shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
-                  ),
-                ),
-              ),
-            ],
+              leading: Icon(Icons.search, color: MColors.textThirtyColor, size: 22.sp),
+              elevation: const WidgetStatePropertyAll(0),
+              backgroundColor: const WidgetStatePropertyAll(Color(0xFFF9F9F9)),
+              side: WidgetStatePropertyAll(BorderSide(color: MColors.thirtyColor, width: 1.w)),
+              shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
+            ),
           ),
         ),
       ),

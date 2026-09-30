@@ -4,7 +4,7 @@ import 'package:mcare_copy2/features/home/screens/home.dart';
 import 'package:mcare_copy2/features/profile/screens/health_history/health_history.dart';
 import 'package:mcare_copy2/features/profile/screens/notifications/Notifications.dart';
 import 'package:mcare_copy2/features/profile/screens/notifications/empty_notification.dart';
-import 'package:mcare_copy2/features/service/hospitals/list_hospital/detail_hospital.dart';
+import 'package:mcare_copy2/features/service/hospitals/screens/detail_hospital/detail_hospital.dart';
 import 'package:mcare_copy2/features/service/medication_remainder/screens/medication_remainder/medication_remainder_fill.dart';
 import 'package:mcare_copy2/features/service/shopping/screens/cart_empty/cart_empty.dart';
 import 'package:mcare_copy2/features/service/shopping/screens/finding_pharmacy/finding_pharmacy.dart';
@@ -19,8 +19,9 @@ import '../../service/shopping/screens/description/description_medicine.dart';
 import '../../service/shopping/screens/description/description_tabbar.dart';
 
 class HomeScreenController extends GetxController {
+  // ignore: non_constant_identifier_names
   RxInt bottom_nav_selected_index = 0.obs;
-
+  static HomeScreenController get instance => Get.find();
   @override
   void onInit() {
     super.onInit();

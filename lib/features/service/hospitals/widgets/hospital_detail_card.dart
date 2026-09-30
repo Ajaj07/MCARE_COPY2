@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
 
 import '../../../../common/widgets/Buttons/primary_button.dart';
 import '../../../../common/widgets/Buttons/secondary_button.dart';
@@ -134,6 +136,7 @@ class HospitalDetailCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(width: 1.w, color: MColors.thirtyColor),
       ),
@@ -213,10 +216,14 @@ class HospitalDetailCard extends StatelessWidget {
                 child: MSButton2(
                   label: 'Bed  Detail',
                   buttonStyle: ButtonStyle(side: WidgetStatePropertyAll(BorderSide(color: MColors.primaryColor))),
+                  callback: () => Get.toNamed(AppRoutes.detailHospital),
                 ),
               ),
+
               SizedBox(width: 16.w),
-              Expanded(child: MPButton2(label: 'Location')),
+              Expanded(
+                child: MPButton2(label: 'Location', callback: () => Get.toNamed(AppRoutes.hospitalMaps)),
+              ),
             ],
           ),
         ],

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/secondary_button.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 
+import '../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../utils/theme/widget/text_theme_screen_util.dart';
 // import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
@@ -136,7 +138,7 @@ class Article extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios, size: 20.w),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.textSecondaryColor, onPressed: () => Get.back()),
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
       ),

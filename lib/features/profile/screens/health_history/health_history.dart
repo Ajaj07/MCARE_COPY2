@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme_screen_util.dart';
 
+import '../../../../common/widgets/Buttons/appbar_button.dart';
 import 'widgets/digonsed_card.dart';
 import 'widgets/disease_expansion_tile.dart';
 
@@ -17,15 +20,7 @@ class HealthHistory extends StatelessWidget {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Image.asset(
-            'assets/icons/back_arrow.png',
-            width: 24.w, // Made back arrow width responsive
-            height: 24.h, // Made back arrow height responsive
-            fit: BoxFit.cover,
-          ),
-        ),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.textSecondaryColor, onPressed: () => Get.back()),
         title: Text(
           'Health History',
           style: MTextTheme.semiBold.copyWith(fontSize: 16.sp), // Made text size responsive using .sp

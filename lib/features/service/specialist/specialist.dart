@@ -7,7 +7,7 @@ import '../../../utils/constants/colors.dart';
 ///-------------------[ Direct With Screen Util]-------------------------
 
 class Specialist extends StatefulWidget {
-  Specialist({super.key});
+  const Specialist({super.key});
 
   @override
   State<Specialist> createState() => _SpecialistState();

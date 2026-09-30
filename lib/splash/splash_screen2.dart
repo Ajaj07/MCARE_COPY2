@@ -4,7 +4,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/primary_button.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/secondary_button.dart';
-import 'package:mcare_copy2/features/authentication/registration/phone_registration.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme_screen_util.dart';
 

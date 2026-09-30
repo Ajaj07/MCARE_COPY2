@@ -8,14 +8,13 @@ void main() {
   runApp(MyApp());
 }
 
-/// as per figma width : 428 height : 926
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(428, 926),
+      designSize: Size(428, 926), // figma size
       minTextAdapt: true,
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,

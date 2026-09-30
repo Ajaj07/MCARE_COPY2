@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
 // import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
-import '../../../../common/widgets/Buttons/primary_button.dart';
-import '../../../../common/widgets/Buttons/secondary_button.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/theme/widget/text_theme_screen_util.dart';
+import '../../../../../common/widgets/Buttons/primary_button.dart';
+import '../../../../../common/widgets/Buttons/secondary_button.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/theme/widget/text_theme_screen_util.dart';
 
 /// without screen Util
 /*
@@ -334,6 +336,7 @@ class _DetailHospitalState extends State<DetailHospital> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 26.w),
@@ -343,7 +346,7 @@ class _DetailHospitalState extends State<DetailHospital> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20.h),
+                SizedBox(height: 25.h),
                 // image name
                 HospitalImage(),
                 SizedBox(height: 20.h),
@@ -420,11 +423,14 @@ class _DetailHospitalState extends State<DetailHospital> {
               child: MSButton2(
                 label: 'Maps',
                 buttonStyle: ButtonStyle(side: WidgetStatePropertyAll(BorderSide(color: MColors.primaryColor))),
+                callback: () => Get.toNamed(AppRoutes.hospitalMaps),
               ),
             ),
 
             SizedBox(width: 10.w),
-            Expanded(child: MPButton2(label: 'Contact Now')),
+            Expanded(
+              child: MPButton2(label: 'Contact Now', callback: () => Get.toNamed(AppRoutes.listHospital)),
+            ),
           ],
         ),
       ),
@@ -621,7 +627,7 @@ class HospitalImage extends StatelessWidget {
       height: 256.h,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), color: MColors.thirtyColor),
-      child: Image.asset('assets/images/hospital_list/image_1.png', fit: BoxFit.fill),
+      child: Image.asset('assets/images/hospital_list/image_1_high.png', fit: BoxFit.fill),
     );
   }
 }

@@ -4,6 +4,11 @@ import 'package:get/get.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/primary_button.dart';
 import 'package:mcare_copy2/features/authentication/login/verification_success.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
+import 'package:mcare_copy2/utils/constants/sizes.dart';
+
+import '../../../common/widgets/Buttons/appbar_button.dart';
+import '../../../common/widgets/TextField/text_field.dart';
+import '../../../utils/helpers/device_helpers.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -19,71 +24,82 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       body: DefaultTabController(
         length: 2,
-        child: Padding(
-          padding: EdgeInsets.only(top: 40.h, right: 28.w, left: 28.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              /// Back button
-              IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: MDeviceHelper.getAppBarHeight() / 1.5),
+              // color: Colors.red,
+              child: AppbarButton(
+                icon: Icons.chevron_left,
+                size: 28.r,
+                color: MColors.iconColor1,
                 onPressed: () => Get.back(),
-                icon: Icon(Icons.chevron_left, color: MColors.iconColor1),
               ),
-              SizedBox(height: 32.h),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: MSizes.defaultHorizontalPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 32.h),
 
-              /// Header Text
-              Text(
-                'Enter your phone number or email',
-                style: TextStyle(
-                  fontFamily: 'Khula',
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w700,
-                  color: MColors.textColor,
-                ),
-              ),
-              SizedBox(height: 44.h),
+                    /// Header Text
+                    Text(
+                      'Enter your phone number or email',
+                      style: TextStyle(
+                        fontFamily: 'Khula',
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w700,
+                        color: MColors.textColor,
+                      ),
+                    ),
+                    SizedBox(height: 44.h),
 
-              /// Tab Bar
-              TabBar(
-                indicatorColor: MColors.primaryColor,
-                indicatorSize: TabBarIndicatorSize.tab,
-                dividerColor: MColors.secondaryColor,
-                dividerHeight: 2.h,
-                labelStyle: TextStyle(
-                  fontFamily: 'Khula',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16.sp,
-                  color: MColors.primaryColor,
-                ),
-                unselectedLabelStyle: TextStyle(
-                  fontFamily: 'Khula',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16.sp,
-                  color: MColors.secondaryColor,
-                ),
-                tabs: const [
-                  Tab(text: "No Phone"),
-                  Tab(text: "Email"),
-                ],
-              ),
+                    /// Tab Bar
+                    TabBar(
+                      indicatorColor: MColors.primaryColor,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      dividerColor: MColors.secondaryColor,
+                      dividerHeight: 2.h,
+                      labelStyle: TextStyle(
+                        fontFamily: 'Khula',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16.sp,
+                        color: MColors.primaryColor,
+                      ),
+                      unselectedLabelStyle: TextStyle(
+                        fontFamily: 'Khula',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16.sp,
+                        color: MColors.secondaryColor,
+                      ),
+                      tabs: const [
+                        Tab(text: "No Phone"),
+                        Tab(text: "Email"),
+                      ],
+                    ),
 
-              /// Tab Bar View
-              Expanded(
-                child: TabBarView(
-                  children: const [
-                    /// for Mobile
-                    Mobile(),
+                    /// Tab Bar View
+                    Expanded(
+                      child: TabBarView(
+                        children: const [
+                          /// for Mobile
+                          Mobile(),
 
-                    /// for email
-                    Email(),
+                          /// for email
+                          Email(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -104,29 +120,7 @@ class Email extends StatelessWidget {
         LabelText(label: 'Email '),
         SizedBox(height: 12.h),
         // TextField
-        Container(
-          width: double.infinity,
-          height: 44.h,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(6.r),
-            border: Border.all(color: MColors.secondaryColor),
-          ),
-          child: TextField(
-            keyboardType: TextInputType.emailAddress,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(
-              hintText: 'Enter your email',
-              hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
-              contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              isDense: true,
-            ),
-            style: TextStyle(fontSize: 14.sp),
-          ),
-        ),
+        CustomField(hintText: 'Enter your email'),
 
         ///  issue Text
         SizedBox(height: 26.h),

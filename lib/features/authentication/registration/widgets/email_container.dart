@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
+import '../../../../common/widgets/TextField/text_field.dart';
+
 ///-----------------------[Without Screen Util]----------------------
 /*
 class EmailContainer extends StatelessWidget {
@@ -71,27 +73,31 @@ class EmailContainer extends StatelessWidget {
         children: [
           Text('Email', style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600)),
           SizedBox(height: 12.h),
-          Container(
-            width: double.infinity,
-            height: 44.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6.r),
-              border: Border.all(
-                color: MColors.secondaryColor,
-                width: 1.w, // Applied .w here
-              ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 14.w, bottom: 17.5.h),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Enter Your email', // Switched to hintText
-                  hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
+          CustomField(
+            hintText: "Enter Your Email",
+            hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
           ),
+          // Container(
+          //   width: double.infinity,
+          //   height: 44.h,
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(6.r),
+          //     border: Border.all(
+          //       color: MColors.secondaryColor,
+          //       width: 1.w, // Applied .w here
+          //     ),
+          //   ),
+          //   child: Padding(
+          //     padding: EdgeInsets.only(left: 14.w, bottom: 17.5.h),
+          //     child: TextFormField(
+          //       decoration: InputDecoration(
+          //         hintText: 'Enter Your email', // Switched to hintText
+          //         hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
+          //         border: InputBorder.none,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

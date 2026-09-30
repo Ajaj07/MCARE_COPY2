@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/primary_button.dart';
 import 'package:mcare_copy2/features/onBoarding/controller/onboarding_controller.dart';
 
@@ -15,6 +16,7 @@ class OnBoardingNextButton extends StatelessWidget {
       // bottom: MDeviceHelper.getBottomNavigationBarHeight(),
       bottom: kBottomNavigationBarHeight,
       child: SizedBox(
+        height: 51.h,
         width: double.infinity,
         child: MPButton2(callback: controller.nextPage, label: 'Next'),
       ),

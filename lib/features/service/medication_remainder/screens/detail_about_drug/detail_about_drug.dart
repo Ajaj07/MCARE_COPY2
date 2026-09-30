@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // Added ScreenUtil import
+import 'package:get/get.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
+import '../../../../../common/routes/app_routes.dart';
+import '../../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../../common/widgets/Buttons/primary_button.dart';
 import '../../../../../common/widgets/notification/notification_row.dart';
 
+import '../../../../../utils/constants/colors.dart';
 import 'widgets/drug_info_card.dart';
 import 'widgets/medical_detail_card.dart';
 
@@ -83,15 +87,7 @@ class DetailAboutDrug extends StatelessWidget {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Image.asset(
-            'assets/icons/back_arrow.png',
-            width: 24.w, // Made back arrow width responsive
-            height: 24.h, // Made back arrow height responsive
-            fit: BoxFit.cover,
-          ),
-        ),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.textSecondaryColor, onPressed: () => Get.back()),
         title: Text(
           'Details about the drug',
           style: MTextTheme.semiBold.copyWith(fontSize: 16.sp), // Made text size responsive using .sp
@@ -135,7 +131,7 @@ class DetailAboutDrug extends StatelessWidget {
           ),
           width: double.infinity,
           height: 85.h, // Increased from 70 to give adequate space for the button layout with .h scalability
-          child: const MPButton2(label: 'save'),
+          child: MPButton2(label: 'save', callback: () => Get.toNamed(AppRoutes.medicationRemainderFill)),
         ),
       ),
     );

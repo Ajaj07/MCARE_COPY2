@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/widgets/Buttons/appbar_button.dart';
 import 'package:mcare_copy2/features/service/articel/widgets/articel_card.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
-
 import '../../../common/widgets/Buttons/primary_button.dart';
 import '../../../common/widgets/Buttons/secondary_button.dart';
 import '../../../utils/constants/colors.dart';
@@ -208,14 +209,33 @@ class ArticelList extends StatelessWidget {
       textStyle: MTextTheme.bodyMedium.copyWith(color: MColors.textThirtyColor),
     ),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: SafeArea(child: ArticelAppBar()),
+      appBar: AppBar(
+        toolbarHeight: kToolbarHeight + 20,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.textSecondaryColor, onPressed: () => Get.back()),
+        leadingWidth: 50,
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 10, top: 10),
+          child: SizedBox(
+            height: 48,
+            child: SearchBar(
+              hintText: 'Search article',
+              hintStyle: WidgetStatePropertyAll(
+                TextStyle(color: MColors.textThirtyColor, fontSize: 14.sp, fontFamily: 'Khula'),
+              ),
+              leading: Icon(Icons.search, color: MColors.textThirtyColor, size: 22.sp),
+              elevation: WidgetStatePropertyAll(0),
+              backgroundColor: WidgetStatePropertyAll(Color(0xFFF9F9F9)),
+              side: WidgetStatePropertyAll(BorderSide(color: MColors.thirtyColor, width: 1.w)),
+              shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -325,22 +345,16 @@ class ArticelAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 26.w),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset('assets/icons/back_arrow.png', width: 24.w, height: 24.h, fit: BoxFit.cover),
-          ),
+          AppbarButton(icon: Icons.chevron_left, onPressed: () => Get.back()),
+          SizedBox(width: 18.w),
           Flexible(
-            child: Container(
-              padding: EdgeInsets.only(right: 26.w, left: 10.w),
+            child: SizedBox(
               height: 48.h,
               child: SearchBar(
-                hintText: 'Search product or store',
+                hintText: 'Search article',
                 hintStyle: WidgetStatePropertyAll(
                   TextStyle(color: MColors.textThirtyColor, fontSize: 14.sp, fontFamily: 'Khula'),
                 ),
@@ -356,4 +370,37 @@ class ArticelAppBar extends StatelessWidget {
       ),
     );
   }
-}
+}    /*
+    Padding(
+      padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          IconButton(
+            onPressed: () {},
+            icon: Image.asset('assets/icons/back_arrow.png', width: 24.w, height: 24.h, fit: BoxFit.cover),
+          ),
+          Flexible(
+            child: Container(
+              padding: EdgeInsets.only(right: 26.w, left: 10.w),
+              height: 48.h,
+              child: SearchBar(
+                hintText: 'Search article',
+                hintStyle: WidgetStatePropertyAll(
+                  TextStyle(color: MColors.textThirtyColor, fontSize: 14.sp, fontFamily: 'Khula'),
+                ),
+                leading: Icon(Icons.search, color: MColors.textThirtyColor, size: 22.sp),
+                elevation: WidgetStatePropertyAll(0),
+                backgroundColor: WidgetStatePropertyAll(Color(0xFFF9F9F9)),
+                side: WidgetStatePropertyAll(BorderSide(color: MColors.thirtyColor, width: 1.w)),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  */
+  

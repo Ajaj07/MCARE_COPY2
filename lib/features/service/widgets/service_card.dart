@@ -35,7 +35,7 @@ const List<ServiceModel> kServices = [
     label: 'Hospitals',
     iconSize: 44,
     topPad: 9.5,
-    // route: AppRoutes.hospitals,
+    route: AppRoutes.listHospital,
   ),
   ServiceModel(
     icon: 'assets/images/specialist/service_specialits_2.png',
@@ -49,14 +49,14 @@ const List<ServiceModel> kServices = [
     label: 'Articel',
     iconSize: 44,
     topPad: 9.5,
-    // 👈 no route given — tapping this tile will do nothing
+    route: AppRoutes.articelList,
   ),
   ServiceModel(
     icon: 'assets/images/specialist/service_specialits_4.png',
     label: 'Medication\nRemainder',
     iconSize: 35.58,
     topPad: 5.29,
-    // route: AppRoutes.medicationReminder,
+    route: AppRoutes.medicationRemainder,
   ),
   ServiceModel(
     icon: 'assets/images/specialist/service_specialits_5.png',

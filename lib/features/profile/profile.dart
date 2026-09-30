@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
+import 'package:mcare_copy2/features/home/controller/home_screen_controller.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
-// import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
-
+import '../../common/widgets/Buttons/appbar_button.dart';
 import '../../common/widgets/Buttons/secondary_button.dart';
-
 import '../../utils/theme/widget/text_theme_screen_util.dart';
 import 'widgets/menu.dart';
 import 'widgets/profile_row.dart';
@@ -152,10 +154,15 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
-        // centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Image.asset('assets/icons/back_arrow.png', width: 24.w, height: 24.h, fit: BoxFit.cover),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark, // Android: dark icons
+          statusBarBrightness: Brightness.light, // iOS: dark icons (this is inverted on iOS)
+        ),
+        leading: AppbarButton(
+          icon: Icons.chevron_left,
+          color: MColors.iconColor1,
+          onPressed: () => Get.find<HomeScreenController>().updateIndex(index: 0),
         ),
         title: Text('My Profile', style: MTextTheme.regular),
       ),
@@ -193,21 +200,31 @@ class Profile extends StatelessWidget {
                     child: Column(
                       spacing: 10.h,
                       children: [
-                        Menu(
-                          imageName: 'assets/icons/svg/book_mark.svg',
-                          title: 'Prescription History',
-                          subtitle: 'Check out the full prescription history here',
+                        InkWell(
+                          onTap: () => Get.toNamed(AppRoutes.percriptionHistory),
+                          child: Menu(
+                            imageName: 'assets/icons/svg/book_mark.svg',
+                            title: 'Prescription History',
+                            subtitle: 'Check out the full prescription history here',
+                          ),
                         ),
 
-                        Menu(
-                          imageName: 'assets/icons/svg/health_alive.svg',
-                          title: 'Health History',
-                          subtitle: 'Check  detail regarding your medical history ',
+                        InkWell(
+                          onTap: () => Get.toNamed(AppRoutes.healthHistory),
+                          child: Menu(
+                            imageName: 'assets/icons/svg/health_alive.svg',
+                            title: 'Health History',
+                            subtitle: 'Check  detail regarding your medical history ',
+                          ),
                         ),
-                        Menu(
-                          imageName: 'assets/icons/svg/transactions.svg',
-                          title: 'Transactions',
-                          subtitle: 'Look back at your previous transactions',
+
+                        InkWell(
+                          onTap: () => Get.toNamed(AppRoutes.transactions),
+                          child: Menu(
+                            imageName: 'assets/icons/svg/transactions.svg',
+                            title: 'Transactions',
+                            subtitle: 'Look back at your previous transactions',
+                          ),
                         ),
                       ],
                     ),
