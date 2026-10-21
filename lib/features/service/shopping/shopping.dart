@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
+import 'package:mcare_copy2/common/widgets/searchBar/search_bar.dart';
 import 'package:mcare_copy2/features/service/shopping/widgets/medicine_card.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
-// import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
-import 'package:flutter/services.dart';
-
+import '../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../utils/theme/widget/text_theme_screen_util.dart';
 import 'widgets/best_selling_tile.dart';
 import 'widgets/button_row.dart';
@@ -330,24 +331,34 @@ class Shopping extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 12.w,
-        toolbarHeight: 66.h,
-        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+        // toolbarHeight: 66.h,
+        // automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: Padding(
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
+        title: SizedBox(height: 48, child: CustomSearchBar()),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+            icon: SvgPicture.asset('assets/icons/svg/cart_outline.svg', height: 24.sp, width: 24.sp),
+          ),
+        ],
+        /*  
+         Padding(
           padding: EdgeInsets.only(right: 16.w, top: 15.h), // <-- balances titleSpacing on the right
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-                onPressed: () {},
-                icon: Icon(Icons.arrow_back_ios_new, size: 24.sp, color: MColors.textSecondaryColor),
-              ),
-              SizedBox(width: 15.w),
+              // IconButton(
+              //   padding: EdgeInsets.zero,
+              //   constraints: const BoxConstraints(),
+              //   onPressed: () {},
+              //   icon: Icon(Icons.arrow_back_ios_new, size: 24.sp, color: MColors.textSecondaryColor),
+              // ),
+              // SizedBox(width: 15.w),
               Expanded(
                 child: Container(
                   height: 48.h,
@@ -381,6 +392,7 @@ class Shopping extends StatelessWidget {
             ],
           ),
         ),
+      */
       ),
 
       body: SafeArea(
@@ -468,16 +480,19 @@ class Shopping extends StatelessWidget {
               SizedBox(height: 15.h),
               Padding(
                 padding: EdgeInsets.only(left: 26.w),
-                child: SizedBox(
-                  height: 248.h,
-                  width: double.infinity,
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(width: 10.w),
-                    itemCount: medicineCard.length,
-                    itemBuilder: (context, index) {
-                      return medicineCard[index];
-                    },
-                    scrollDirection: Axis.horizontal,
+                child: InkWell(
+                  onTap: () => Get.toNamed(AppRoutes.descriptionMedicine),
+                  child: SizedBox(
+                    height: 248.h,
+                    width: double.infinity,
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(width: 10.w),
+                      itemCount: medicineCard.length,
+                      itemBuilder: (context, index) {
+                        return medicineCard[index];
+                      },
+                      scrollDirection: Axis.horizontal,
+                    ),
                   ),
                 ),
               ),

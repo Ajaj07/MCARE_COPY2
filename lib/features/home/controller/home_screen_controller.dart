@@ -51,7 +51,7 @@ class HomeScreenController extends GetxController {
     DescriptionTabbar(),
     DescriptionMedicine(),
     Notifications(),
-    EmptyNotification(),
+    // EmptyNotification(),
     HealthHistory(),
     Profile(),
     ArticelList(),

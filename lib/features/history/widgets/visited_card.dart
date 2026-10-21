@@ -285,231 +285,261 @@ class VisitedCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  PersistentBottomSheetController notificationBottomSheet(BuildContext context) {
-    return showBottomSheet(
-      backgroundColor: Colors.white,
-      showDragHandle: false,
-      // turned off default handle, using custom one below
-      sheetAnimationStyle: AnimationStyle(duration: Duration(seconds: 2), curve: FlippedCurve(Curves.easeIn)),
-      context: context,
-      builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          decoration: BoxDecoration(color: Color(0XFFFFFFFF)),
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Center(
-                child: Container(
-                  width: 60,
-                  height: 4,
-                  decoration: BoxDecoration(color: Color(0xFFA6CFD5), borderRadius: BorderRadius.circular(4)),
-                ),
-              ),
-
-              /// Notification title
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Notification',
-                    style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600, color: Color(0XFF090909)),
+///notification Bottom Sheet
+Future<void> notificationBottomSheet(BuildContext context) {
+  return showModalBottomSheet<void>(
+    context: context,
+    backgroundColor: Colors.white,
+    useSafeArea: true,
+    showDragHandle: false,
+    isDismissible: true, // tap outside to close (default true)
+    enableDrag: true, // swipe down to close (default true)
+    isScrollControlled: true, // removes the default 9/16 screen height cap
+    constraints: const BoxConstraints(maxWidth: double.infinity), // keeps full width like before
+    sheetAnimationStyle: AnimationStyle(duration: const Duration(seconds: 1), curve: FlippedCurve(Curves.easeIn)),
+    builder: (context) {
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        decoration: BoxDecoration(color: Color(0XFFFFFFFF), borderRadius: BorderRadius.circular(20.r)),
+        width: double.infinity,
+        child: SafeArea(
+          top: false,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Center(
+                  child: Container(
+                    width: 60.w,
+                    height: 4.h,
+                    decoration: BoxDecoration(color: const Color(0xFFA6CFD5), borderRadius: BorderRadius.circular(4.r)),
                   ),
-                ],
-              ),
-              SizedBox(height: 30),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(width: 1, color: MColors.thirtyColor),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Activate notifications', style: MTextTheme.labelMedium),
 
-                    Switch(
-                      thumbColor: WidgetStatePropertyAll(Color(0XFFFFFFFF)),
-                      // activeColor: MColors.primaryColor,
-                      activeTrackColor: MColors.primaryColor,
-                      value: true,
-                      onChanged: (value) {},
+                /// Notification title
+                SizedBox(height: 20.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Notification',
+                      style: MTextTheme.bold.copyWith(fontWeight: FontWeight.w600, color: const Color(0XFF090909)),
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 30),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: MColors.primaryColor),
-                      onPressed: () {
-                        Get.toNamed(AppRoutes.chatScreen);
-                      },
-                      child: Text('Submit', style: MTextTheme.semiBold.copyWith(fontSize: 16, color: Colors.white)),
-                    ),
+                SizedBox(height: 30.h),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12.r),
+                    border: Border.all(width: 1, color: MColors.thirtyColor),
                   ),
-                ],
-              ),
-            ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Activate notifications', style: MTextTheme.labelMedium),
+                      Switch(
+                        thumbColor: const WidgetStatePropertyAll(Color(0XFFFFFFFF)),
+                        activeTrackColor: MColors.primaryColor,
+                        value: true,
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30.w),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 51.h,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(backgroundColor: MColors.primaryColor),
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.chatScreen);
+                          },
+                          child: Text(
+                            'Submit',
+                            style: MTextTheme.semiBold.copyWith(fontSize: 16.sp, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        );
-      },
-    );
-  }
+        ),
+      );
+    },
+  );
 }
 
 /// Schedule botttom sheet
 
-PersistentBottomSheetController rescheduleBottomSheet(BuildContext context) {
-  return showBottomSheet(
-    backgroundColor: Colors.white,
-    showDragHandle: false, // turned off default handle, using custom one below
-    sheetAnimationStyle: AnimationStyle(duration: Duration(seconds: 2), curve: FlippedCurve(Curves.easeIn)),
+Future<void> rescheduleBottomSheet(BuildContext context) {
+  return showModalBottomSheet<void>(
     context: context,
+    backgroundColor: Colors.white,
+    useSafeArea: true,
+    showDragHandle: false, // turned off default handle, using custom one below
+    isDismissible: true, // tap outside to close
+    enableDrag: true, // swipe down to close
+    isScrollControlled: true, // removes the default 9/16 screen height cap
+    constraints: const BoxConstraints(maxWidth: double.infinity), // keeps full width like before
+    sheetAnimationStyle: AnimationStyle(duration: const Duration(seconds: 1), curve: FlippedCurve(Curves.easeIn)),
     builder: (context) {
       return Container(
-        decoration: BoxDecoration(color: Color(0XFFFFFFFF)),
+        decoration: BoxDecoration(color: Color(0XFFFFFFFF), borderRadius: BorderRadius.circular(20.r)),
         width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            /// custom drag indicator
-            SizedBox(height: 12),
-            Center(
-              child: Container(
-                width: 60,
-                height: 4,
-                decoration: BoxDecoration(color: Color(0xFFA6CFD5), borderRadius: BorderRadius.circular(4)),
-              ),
-            ),
-
-            /// reschedule title
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('Reschedule Appointment', style: MTextTheme.bold.copyWith(color: Color(0XFF090909)))],
-            ),
-            SizedBox(height: 20),
-
-            /// working hours
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Working Hours',
-                    style: MTextTheme.semiBold.copyWith(fontSize: 16, color: MColors.textSecondaryColor),
+        child: SafeArea(
+          top: false,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                /// custom drag indicator
+                SizedBox(height: 12.h),
+                Center(
+                  child: Container(
+                    width: 60.w,
+                    height: 4.h,
+                    decoration: BoxDecoration(color: const Color(0xFFA6CFD5), borderRadius: BorderRadius.circular(4.r)),
                   ),
-                  SizedBox(height: 10),
-                  // hour tile
-                  Wrap(
-                    spacing: 16.w,
-                    runSpacing: 16.h,
+                ),
+
+                /// reschedule title
+                SizedBox(height: 20.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Reschedule Appointment', style: MTextTheme.bold.copyWith(color: const Color(0XFF090909))),
+                  ],
+                ),
+                SizedBox(height: 20.h),
+
+                /// working hours
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      HourTile(time: '9.00 AM'),
-                      HourTile(time: '10.00 AM'),
-                      HourTile(time: '1.00 PM'),
-                      HourTile(time: '2.00 PM'),
-                      HourTile(time: '3.00 PM'),
-                      HourTile(time: '4.00 PM'),
+                      Text(
+                        'Working Hours',
+                        style: MTextTheme.semiBold.copyWith(fontSize: 16.sp, color: MColors.textSecondaryColor),
+                      ),
+                      SizedBox(height: 10.h),
+                      // hour tile
+                      Wrap(
+                        spacing: 16.w,
+                        runSpacing: 16.h,
+                        children: const [
+                          HourTile(time: '9.00 AM'),
+                          HourTile(time: '10.00 AM'),
+                          HourTile(time: '1.00 PM'),
+                          HourTile(time: '2.00 PM'),
+                          HourTile(time: '3.00 PM'),
+                          HourTile(time: '4.00 PM'),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
+                ),
+                SizedBox(height: 20.h),
 
-            /// Schedule
-            Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Schedule',
-                    style: MTextTheme.semiBold.copyWith(fontSize: 16, color: MColors.textSecondaryColor),
+                /// Schedule
+                Padding(
+                  padding: EdgeInsets.only(left: 20.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Schedule',
+                        style: MTextTheme.semiBold.copyWith(fontSize: 16.sp, color: MColors.textSecondaryColor),
+                      ),
+                      SizedBox(height: 16.h),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 58.h,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          children: [
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                            SizedBox(width: 15.w),
+                            const DayTile(days: 'Wed', day: 22),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 58,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      physics: BouncingScrollPhysics(),
-                      children: [
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        SizedBox(width: 15.w),
-                        DayTile(days: 'Wed', day: 22),
-                        // SizedBox(width: 15.w),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                ),
 
-            /// Buttons
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        side: BorderSide(width: 1, color: MColors.thirtyColor),
+                /// Buttons
+                SizedBox(height: 20.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () => Get.back(), // close sheet
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side: BorderSide(width: 1, color: MColors.thirtyColor),
+                          ),
+                          child: Text(
+                            'Cancel',
+                            style: MTextTheme.semiBold.copyWith(fontSize: 16.sp, color: MColors.primaryColor),
+                          ),
+                        ),
                       ),
-                      child: Text(
-                        'Cancel',
-                        style: MTextTheme.semiBold.copyWith(fontSize: 16, color: MColors.primaryColor),
+                      SizedBox(width: 8.sp),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.historyEmpty);
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: MColors.primaryColor),
+                          child: Text(
+                            'Reschedule',
+                            style: MTextTheme.semiBold.copyWith(fontSize: 16.sp, color: Colors.white),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(backgroundColor: MColors.primaryColor),
-                      child: Text('Reschedule', style: MTextTheme.semiBold.copyWith(fontSize: 16, color: Colors.white)),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       );
     },

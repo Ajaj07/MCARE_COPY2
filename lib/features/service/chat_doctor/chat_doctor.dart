@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
+import '../../../common/widgets/Buttons/appbar_button.dart';
 import 'widgets/chat_tile.dart';
 
 ///----------------------[WithOut Screen Util]-----------------------
@@ -170,12 +171,8 @@ class ChatDoctor extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        leading: IconButton(
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-          onPressed: () => Get.back(),
-          icon: Icon(Icons.chevron_left, color: MColors.iconColor1),
-        ),
+        leading: AppbarButton(onPressed: () => Get.back(), icon: Icons.chevron_left, color: MColors.iconColor1),
+
         centerTitle: false,
         title: Text('Chat Doctor', style: MTextTheme.regular),
       ),

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mcare_copy2/common/routes/app_routes.dart';
+import '../../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../../common/widgets/notification/notification_row.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/theme/widget/text_theme.dart';
 import '../../widgets/circle_profile.dart';
 import '../../widgets/edu_and_lic_row.dart';
-import '../appointment_Suceess/sucess_screen.dart';
 
 class Conformation extends StatelessWidget {
   const Conformation({super.key});
@@ -16,16 +16,10 @@ class Conformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-          onPressed: () => Get.back(),
-          icon: const Icon(Icons.chevron_left),
-        ),
+        leading: AppbarButton(icon: Icons.chevron_left, onPressed: () => Get.back(), color: MColors.iconColor1),
         surfaceTintColor: Colors.transparent,
-        title: Text('Conformation'),
+        title: Text('Conformation', style: MTextTheme.semiBold.copyWith(fontSize: 16)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

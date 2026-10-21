@@ -44,21 +44,18 @@ class Upcomming extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            '1 Minggu yang akan datang',
-            style: MTextTheme.semiBold.copyWith(
-              color: MColors.textSecondaryColor,
-            ),
-          ),
-          SizedBox(height: 5.h),
-          VisitedCard(),
-          SizedBox(height: 5.h),
-          VisitedCard(),
-        ],
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('1 Minggu yang akan datang', style: MTextTheme.semiBold.copyWith(color: MColors.textSecondaryColor)),
+            SizedBox(height: 5.h),
+            VisitedCard(),
+            SizedBox(height: 5.h),
+            VisitedCard(),
+          ],
+        ),
       ),
     );
   }

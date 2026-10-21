@@ -53,34 +53,39 @@ class SettingsMenuItem extends StatelessWidget {
     super.key,
     required this.iconPath,
     required this.label,
-    this.trailing, // null for normal rows, a widget (e.g. switch) for special rows
+    this.trailing,
+    this.callback, // null for normal rows, a widget (e.g. switch) for special rows
   });
 
   final String iconPath;
   final String label;
   final Widget? trailing;
+  final VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        // Icon container (fixed size box so all icons align identically)
-        SizedBox(
-          width: 36.w,
-          height: 36.h,
-          child: Center(
-            child: SvgPicture.asset(iconPath, width: 24.w, height: 30.h, fit: BoxFit.contain),
+    return InkWell(
+      onTap: callback,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          // Icon container (fixed size box so all icons align identically)
+          SizedBox(
+            width: 36.w,
+            height: 36.h,
+            child: Center(
+              child: SvgPicture.asset(iconPath, width: 24.w, height: 30.h, fit: BoxFit.contain),
+            ),
           ),
-        ),
-        SizedBox(width: 10.w),
+          SizedBox(width: 10.w),
 
-        // Label text
-        Text(label, style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
+          // Label text
+          Text(label, style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
 
-        // Only add Spacer + trailing widget if one was actually passed in
-        if (trailing != null) ...[Spacer(), trailing!],
-      ],
+          // Only add Spacer + trailing widget if one was actually passed in
+          if (trailing != null) ...[Spacer(), trailing!],
+        ],
+      ),
     );
   }
 }

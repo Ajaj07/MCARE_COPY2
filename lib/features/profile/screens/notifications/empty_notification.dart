@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme_screen_util.dart';
-
+import '../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../utils/constants/colors.dart';
 
-class EmptyNotification extends StatelessWidget {
-  const EmptyNotification({super.key});
+class EmptyNotifications extends StatelessWidget {
+  const EmptyNotifications({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +16,7 @@ class EmptyNotification extends StatelessWidget {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Image.asset(
-            'assets/icons/back_arrow.png',
-            width: 24.w, // Made back arrow width responsive
-            height: 24.h, // Made back arrow height responsive
-            fit: BoxFit.cover,
-          ),
-        ),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
         title: Text(
           'Notifications',
           style: MTextTheme.semiBold.copyWith(fontSize: 16.sp), // Made text size responsive using .sp

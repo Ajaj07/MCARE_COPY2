@@ -15,13 +15,13 @@ class Notifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.light,
         centerTitle: true,
-        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.textSecondaryColor, onPressed: () => Get.back()),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
         title: Text(
           'Notifications',
           style: MTextTheme.semiBold.copyWith(fontSize: 16.sp), // Made text size responsive using .sp
@@ -36,7 +36,7 @@ class Notifications extends StatelessWidget {
               SizedBox(height: 20.h),
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => EmptyNotification()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => EmptyNotifications()));
                 },
                 child: NotificationTile(
                   svgImage: 'assets/icons/svg/alert_notification_filled.svg',

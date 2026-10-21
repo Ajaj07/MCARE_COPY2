@@ -427,28 +427,38 @@ class _PhoneRegistrationState extends State<PhoneRegistration> {
                       ),
 
                       /// Register Button
-                      Padding(
-                        padding: EdgeInsets.only(top: MDeviceHelper.getBottomNavigationBarHeight()),
-                        child: MPButton(label: 'Register', pressed: () => Get.toNamed('/emailVerification')),
-                      ),
-                      SizedBox(height: 16.h),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text.rich(
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                            color: MColors.textSecondaryColor,
-                          ),
-                          TextSpan(
-                            text: " Already have an account? ",
-                            children: [
-                              TextSpan(
-                                text: ' Click here to log in?  ',
-                                style: TextStyle(color: MColors.primaryColor),
+                      SafeArea(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.h),
+                              child: SafeArea(
+                                child: MPButton(label: 'Register', pressed: () => Get.toNamed('/emailVerification')),
                               ),
-                            ],
-                          ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text.rich(
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: MColors.textSecondaryColor,
+                                ),
+                                TextSpan(
+                                  text: " Already have an account? ",
+                                  children: [
+                                    TextSpan(
+                                      text: ' Click here to log in?  ',
+                                      style: TextStyle(color: MColors.primaryColor),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: kBottomNavigationBarHeight),
+                          ],
                         ),
                       ),
                     ],

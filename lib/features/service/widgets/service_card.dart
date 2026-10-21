@@ -42,6 +42,7 @@ const List<ServiceModel> kServices = [
     label: 'Emergancy\nServices',
     iconSize: 35.58,
     topPad: 5.29,
+    route: AppRoutes.shopping,
     // route: AppRoutes.emergencyServices,
   ),
   ServiceModel(
@@ -63,6 +64,7 @@ const List<ServiceModel> kServices = [
     label: 'Specialization',
     iconSize: 44,
     topPad: 9.5,
+    route: AppRoutes.specialist,
     // route: AppRoutes.specialization,
   ),
 ];

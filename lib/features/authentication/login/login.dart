@@ -111,59 +111,61 @@ class Email extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 26.h),
-        // Text
-        LabelText(label: 'Email '),
-        SizedBox(height: 12.h),
-        // TextField
-        CustomField(hintText: 'Enter your email'),
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // SizedBox(height: 26.h),
+          // Text
+          LabelText(label: 'Email '),
+          SizedBox(height: 12.h),
+          // TextField
+          CustomField(hintText: 'Enter your email'),
 
-        ///  issue Text
-        SizedBox(height: 26.h),
-        LabelText2(label: 'Is there an issue with your email?'),
+          ///  issue Text
+          SizedBox(height: 26.h),
+          LabelText2(label: 'Is there an issue with your email?'),
 
-        const Spacer(),
+          const Spacer(),
 
-        /// Login Button Column
-        Padding(
-          padding: EdgeInsets.only(bottom: 70.h),
-          child: Column(
-            children: [
-              /// Primary Button
-              MPButton(
-                label: 'Login',
-                pressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const VerificationSuccess()));
-                },
-              ),
-              SizedBox(height: 16.h),
-
-              /// Signup text
-              Text.rich(
-                style: TextStyle(
-                  fontFamily: 'Khula',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16.sp,
-                  color: MColors.textSecondaryColor,
+          /// Login Button Column
+          Padding(
+            padding: EdgeInsets.only(bottom: 70.h),
+            child: Column(
+              children: [
+                /// Primary Button
+                MPButton(
+                  label: 'Login',
+                  pressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const VerificationSuccess()));
+                  },
                 ),
-                TextSpan(
-                  text: "Don't have a MedCare account yet? ",
-                  children: [
-                    TextSpan(
-                      style: TextStyle(color: MColors.primaryColor),
-                      text: 'Sign up',
-                    ),
-                  ],
+                SizedBox(height: 16.h),
+
+                /// Signup text
+                Text.rich(
+                  style: TextStyle(
+                    fontFamily: 'Khula',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16.sp,
+                    color: MColors.textSecondaryColor,
+                  ),
+                  TextSpan(
+                    text: "Don't have a MedCare account yet? ",
+                    children: [
+                      TextSpan(
+                        style: TextStyle(color: MColors.primaryColor),
+                        text: 'Sign up',
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -173,115 +175,117 @@ class Mobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 26.h),
-        // label Text
-        LabelText(label: 'No Phone'),
-        SizedBox(height: 12.h),
-        // TextField
-        Container(
-          width: double.infinity,
-          height: 44.h,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(6.r),
-            border: Border.all(color: MColors.secondaryColor),
-          ),
-          child: Row(
-            children: [
-              // Left Section: Dropdown Selector
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.w),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: null,
-                    hint: Row(
-                      children: [
-                        Text(
-                          'Pilih',
-                          style: TextStyle(color: Colors.black87, fontSize: 14.sp),
-                        ),
-                        SizedBox(width: 4.w),
-                      ],
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // SizedBox(height: 26.h),
+          // label Text
+          LabelText(label: 'No Phone'),
+          SizedBox(height: 12.h),
+          // TextField
+          Container(
+            width: double.infinity,
+            height: 44.h,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(6.r),
+              border: Border.all(color: MColors.secondaryColor),
+            ),
+            child: Row(
+              children: [
+                // Left Section: Dropdown Selector
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: null,
+                      hint: Row(
+                        children: [
+                          Text(
+                            'Pilih',
+                            style: TextStyle(color: Colors.black87, fontSize: 14.sp),
+                          ),
+                          SizedBox(width: 4.w),
+                        ],
+                      ),
+                      icon: Icon(Icons.keyboard_arrow_down, color: Colors.black54, size: 18.sp),
+                      items: const [],
+                      onChanged: (value) {
+                        // Handle country selection
+                      },
                     ),
-                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.black54, size: 18.sp),
-                    items: const [],
-                    onChanged: (value) {
-                      // Handle country selection
-                    },
                   ),
                 ),
-              ),
 
-              // Middle Section: Vertical Divider Line
-              Container(width: 1.w, height: 24.h, color: MColors.secondaryColor),
+                // Middle Section: Vertical Divider Line
+                Container(width: 1.w, height: 24.h, color: MColors.secondaryColor),
 
-              // Right Section: Phone Number Input Field
-              Expanded(
-                child: TextField(
-                  keyboardType: TextInputType.phone,
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                    hintText: 'Enter phone number',
-                    hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14.sp),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    isDense: true,
-                  ),
-                  style: TextStyle(fontSize: 14.sp),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        /// issue Text
-        SizedBox(height: 26.h),
-        LabelText2(label: 'Is there an issue with your phone number?'),
-
-        const Spacer(),
-
-        /// Login Button Column
-        Padding(
-          padding: EdgeInsets.only(bottom: 70.h),
-          child: Column(
-            children: [
-              /// Primary Button
-              MPButton(
-                label: 'Login',
-                pressed: () {
-                  Get.toNamed('/verificationSuccess');
-                },
-              ),
-              SizedBox(height: 16.h),
-
-              /// Signup text
-              Text.rich(
-                style: TextStyle(
-                  fontFamily: 'Khula',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16.sp,
-                  color: MColors.textSecondaryColor,
-                ),
-                TextSpan(
-                  text: "Don't have a MedCare account yet? ",
-                  children: [
-                    TextSpan(
-                      style: TextStyle(color: MColors.primaryColor),
-                      text: 'Sign up',
+                // Right Section: Phone Number Input Field
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                      hintText: 'Enter phone number',
+                      hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14.sp),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      isDense: true,
                     ),
-                  ],
+                    style: TextStyle(fontSize: 14.sp),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+
+          /// issue Text
+          SizedBox(height: 26.h),
+          LabelText2(label: 'Is there an issue with your phone number?'),
+
+          const Spacer(),
+
+          /// Login Button Column
+          Padding(
+            padding: EdgeInsets.only(bottom: 70.h),
+            child: Column(
+              children: [
+                /// Primary Button
+                MPButton(
+                  label: 'Login',
+                  pressed: () {
+                    Get.toNamed('/verificationSuccess');
+                  },
+                ),
+                SizedBox(height: 16.h),
+
+                /// Signup text
+                Text.rich(
+                  style: TextStyle(
+                    fontFamily: 'Khula',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16.sp,
+                    color: MColors.textSecondaryColor,
+                  ),
+                  TextSpan(
+                    text: "Don't have a MedCare account yet? ",
+                    children: [
+                      TextSpan(
+                        style: TextStyle(color: MColors.primaryColor),
+                        text: 'Sign up',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

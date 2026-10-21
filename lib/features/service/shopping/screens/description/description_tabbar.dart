@@ -104,14 +104,17 @@ class _DescriptionTabbarState extends State<DescriptionTabbar> {
 */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme_screen_util.dart';
 
+import '../../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../../common/widgets/Buttons/primary_button.dart';
 import '../../../../../common/widgets/review/review.dart';
 import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/sizes.dart';
 import '../../widgets/medicine_card.dart';
 import 'widgets/all_descriptive_widget.dart';
 
@@ -242,10 +245,11 @@ class _DescriptionTabbarState extends State<DescriptionTabbar> with SingleTicker
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        titleSpacing: 12.w,
-        leadingWidth: 28.w + 20.sp,
-        leading: Padding(
+        titleSpacing: 0,
+        // leadingWidth: 28.w + 20.sp,
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
+        /*  
+        Padding(
           padding: EdgeInsets.only(left: 28.w),
           child: IconButton(
             padding: EdgeInsets.zero,
@@ -254,6 +258,7 @@ class _DescriptionTabbarState extends State<DescriptionTabbar> with SingleTicker
             icon: Icon(Icons.arrow_back_ios_new, size: 20.sp, color: MColors.textSecondaryColor),
           ),
         ),
+        */
         title: Text(
           'Bufect Strip of 4 Tablets -Heat and Pain Relief Medicine',
           maxLines: 2,
@@ -272,152 +277,163 @@ class _DescriptionTabbarState extends State<DescriptionTabbar> with SingleTicker
               colorFilter: const ColorFilter.mode(MColors.textSecondaryColor, BlendMode.srcIn),
             ),
           ),
-          SizedBox(width: 28.w),
+          SizedBox(width: 5.w),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Sits OUTSIDE the scroll area — stays visible at all times,
-          // and its highlighted tab now reflects scroll position.
-          TabBar(
-            controller: _tabController,
-            onTap: _onTabTap,
-            indicatorColor: MColors.primaryColor,
-            indicatorAnimation: TabIndicatorAnimation.elastic,
-            indicatorSize: TabBarIndicatorSize.label,
-            dividerColor: const Color(0xFFE3E3E3),
-            isScrollable: true,
-            indicatorWeight: 2,
-            tabAlignment: TabAlignment.start,
-            dividerHeight: 2.h,
-            labelStyle: TextStyle(
-              fontFamily: 'Khula',
-              fontWeight: FontWeight.w600,
-              fontSize: 16.sp,
-              color: MColors.primaryColor,
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'Khula',
-              fontWeight: FontWeight.w400,
-              fontSize: 16.sp,
-              color: const Color(0XFF4D4D4D),
-            ),
-            tabs: const [
-              Tab(text: "Description"),
-              Tab(text: "Details"),
-              Tab(text: "Reviews"),
-            ],
-          ),
-
-          Expanded(
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  controller: _scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(left: 26.w, right: 26.w, top: 20.h, bottom: 100.h),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // ---------------- Description section ----------------
-                      Column(
-                        key: _descriptionKey,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ProductDescription(),
-                          SizedBox(height: 20.h),
-                          ProductBenefits(),
-                        ],
-                      ),
-                      SizedBox(height: 30.h),
-
-                      // ---------------- Details section ----------------
-                      Column(
-                        key: _detailsKey,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ProductComposition(),
-                          SizedBox(height: 20.h),
-                          ProductDosage(),
-                          SizedBox(height: 20.h),
-                          StorageInstructionHalf(),
-                          SizedBox(height: 20.h),
-                          StorageInstructionFull(),
-                        ],
-                      ),
-                      SizedBox(height: 30.h),
-
-                      // ---------------- Reviews section ----------------
-                      Column(
-                        key: _reviewsKey,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Reviews', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
-                          SizedBox(height: 7.h),
-                          SizedBox(
-                            height: 200.h,
-                            width: double.infinity,
-                            child: ListView.separated(
-                              padding: EdgeInsets.all(8.w),
-                              clipBehavior: Clip.none,
-
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return MReviewCard(
-                                  name: 'Emily Johnson',
-                                  avatarAsset: 'assets/images/chat/doc_details1.jpg',
-                                  daysAgo: '1 day ago',
-                                  rating: 4.0,
-                                  reviewText:
-                                      "My consultation with Dr. Luca Rossi was excellent. He's knowledgeable, attentive, and provid...",
-                                  onMoreViewTap: () => print('open full review'),
-                                );
-                              },
-                              separatorBuilder: (context, index) => SizedBox(width: 20.w),
-                              // clipBehavior: Clip.none,
-                              itemCount: 3,
-                            ),
-                          ),
-                          SizedBox(height: 20.h),
-
-                          // related products
-                          Text('Related Products', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
-                          SizedBox(height: 7.h),
-                          SizedBox(
-                            height: 248.h,
-                            width: double.infinity,
-                            child: ListView.separated(
-                              clipBehavior: Clip.none,
-                              separatorBuilder: (context, index) => SizedBox(width: 10.w),
-                              itemCount: medicineCard.length,
-                              itemBuilder: (context, index) {
-                                return medicineCard[index];
-                              },
-                              scrollDirection: Axis.horizontal,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Fixed Add to Cart — outside the scroll view entirely,
-                // so it never moves regardless of which section is active.
-                Positioned(
-                  left: 24.w,
-                  right: 24.w,
-                  bottom: 20.h,
-                  child: SizedBox(
-                    height: 45.h,
-                    child: MPButton2(label: 'Add to Cart'),
-                  ),
-                ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Sits OUTSIDE the scroll area — stays visible at all times,
+            // and its highlighted tab now reflects scroll position.
+            TabBar(
+              controller: _tabController,
+              onTap: _onTabTap,
+              indicatorColor: MColors.primaryColor,
+              indicatorAnimation: TabIndicatorAnimation.elastic,
+              indicatorSize: TabBarIndicatorSize.label,
+              dividerColor: const Color(0xFFE3E3E3),
+              isScrollable: true,
+              indicatorWeight: 2,
+              tabAlignment: TabAlignment.start,
+              dividerHeight: 2.h,
+              labelStyle: TextStyle(
+                fontFamily: 'Khula',
+                fontWeight: FontWeight.w600,
+                fontSize: 16.sp,
+                color: MColors.primaryColor,
+              ),
+              unselectedLabelStyle: TextStyle(
+                fontFamily: 'Khula',
+                fontWeight: FontWeight.w400,
+                fontSize: 16.sp,
+                color: const Color(0XFF4D4D4D),
+              ),
+              tabs: const [
+                Tab(text: "Description"),
+                Tab(text: "Details"),
+                Tab(text: "Reviews"),
               ],
             ),
-          ),
-        ],
+
+            Expanded(
+              child: SafeArea(
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      controller: _scrollController,
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.only(
+                        left: MSizes.defaultHorizontalPadding,
+                        right: MSizes.defaultHorizontalPadding,
+                        top: 20.h,
+                        bottom: 100.h,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // ---------------- Description section ----------------
+                          Column(
+                            key: _descriptionKey,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ProductDescription(),
+                              SizedBox(height: 20.h),
+                              ProductBenefits(),
+                            ],
+                          ),
+                          SizedBox(height: 30.h),
+
+                          // ---------------- Details section ----------------
+                          Column(
+                            key: _detailsKey,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ProductComposition(),
+                              SizedBox(height: 20.h),
+                              ProductDosage(),
+                              SizedBox(height: 20.h),
+                              StorageInstructionHalf(),
+                              SizedBox(height: 20.h),
+                              StorageInstructionFull(),
+                            ],
+                          ),
+                          SizedBox(height: 30.h),
+
+                          // ---------------- Reviews section ----------------
+                          Column(
+                            key: _reviewsKey,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Reviews', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
+                              SizedBox(height: 7.h),
+                              SizedBox(
+                                height: 200.h,
+                                width: double.infinity,
+                                child: ListView.separated(
+                                  padding: EdgeInsets.all(8.w),
+                                  clipBehavior: Clip.none,
+
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return MReviewCard(
+                                      name: 'Emily Johnson',
+                                      avatarAsset: 'assets/images/chat/doc_details1.jpg',
+                                      daysAgo: '1 day ago',
+                                      rating: 4.0,
+                                      reviewText:
+                                          "My consultation with Dr. Luca Rossi was excellent. He's knowledgeable, attentive, and provid...",
+                                      onMoreViewTap: () => print('open full review'),
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) => SizedBox(width: 20.w),
+                                  // clipBehavior: Clip.none,
+                                  itemCount: 3,
+                                ),
+                              ),
+                              SizedBox(height: 20.h),
+
+                              // related products
+                              Text('Related Products', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
+                              SizedBox(height: 7.h),
+                              SizedBox(
+                                height: 248.h,
+                                width: double.infinity,
+                                child: ListView.separated(
+                                  clipBehavior: Clip.none,
+                                  separatorBuilder: (context, index) => SizedBox(width: 10.w),
+                                  itemCount: medicineCard.length,
+                                  itemBuilder: (context, index) {
+                                    return medicineCard[index];
+                                  },
+                                  scrollDirection: Axis.horizontal,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Fixed Add to Cart — outside the scroll view entirely,
+                    // so it never moves regardless of which section is active.
+                    Positioned(
+                      left: 24.w,
+                      right: 24.w,
+                      bottom: 20.h,
+                      child: SafeArea(
+                        child: SizedBox(
+                          height: 51.h,
+                          child: MPButton2(label: 'Add to Cart', callback: () => Get.toNamed(AppRoutes.shoppingFilter)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

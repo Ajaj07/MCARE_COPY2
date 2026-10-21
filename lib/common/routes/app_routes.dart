@@ -30,4 +30,13 @@ class AppRoutes {
   static const String healthHistory = '/healthHistory';
   static const String transactions = '/transactions';
   static const String accountSetting = '/accountSetting';
+  static const String notifications = '/Notifications';
+  static const String emptyNotifications = '/EmptyNotifications';
+  static const String specialist = '/Specialist';
+  static const String shopping = '/Shopping';
+  static const String descriptionMedicine = '/descriptionMedicine';
+  static const String descriptionTabbar = '/descriptionTabbar';
+  static const String shoppingFilter = '/shoppingFilter';
+  static const String cartBefore = '/cartBefore';
+  static const String cartEmpty = '/cartEmpty';
 }

@@ -5,6 +5,7 @@ import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../common/routes/app_routes.dart';
+import '../../../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../../../common/widgets/Buttons/primary_button.dart';
 import '../../../../../../common/widgets/review/review.dart';
 import '../../../../../../utils/constants/sizes.dart';
@@ -168,42 +169,44 @@ class DoctorDetails extends StatelessWidget {
         ],
       ),
 
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 14),
-        child: Row(
-          children: [
-            SizedBox(
-              height: MSizes.defaultButtonHeight,
-              child: OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  side: BorderSide(color: MColors.primaryColor, width: 1),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset('assets/icons/svg/fluent_chat.svg', width: 31, height: 31),
-                    const SizedBox(width: 6),
-                    Text('Chat', style: MTextTheme.bold),
-                  ],
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          color: Colors.white,
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 14),
+          child: Row(
+            children: [
+              SizedBox(
+                height: MSizes.defaultButtonHeight,
+                child: OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    side: BorderSide(color: MColors.primaryColor, width: 1),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset('assets/icons/svg/fluent_chat.svg', width: 31, height: 31),
+                      const SizedBox(width: 6),
+                      Text('Chat', style: MTextTheme.bold),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: SizedBox(
-                height: 51,
-                child: MPButton2(label: 'Make An Appointment', callback: () => Get.toNamed(AppRoutes.conformation)),
+              const SizedBox(width: 12),
+              Expanded(
+                child: SizedBox(
+                  height: 51,
+                  child: MPButton2(label: 'Make An Appointment', callback: () => Get.toNamed(AppRoutes.conformation)),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -245,14 +248,7 @@ class DocDeteailsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      surfaceTintColor: Colors.transparent,
-      backgroundColor: Color(0xFFF6F1FF),
-      leading: IconButton(
-        padding: EdgeInsets.zero,
-        constraints: const BoxConstraints(),
-        onPressed: () => Get.back(),
-        icon: Icon(Icons.chevron_left, color: MColors.iconColor1),
-      ),
+      leading: AppbarButton(icon: Icons.chevron_left, onPressed: () => Get.back(), color: MColors.iconColor1),
       title: Text('Doctor Details', style: MTextTheme.semiBold.copyWith(fontSize: 16)),
       centerTitle: true,
       actions: [

@@ -291,12 +291,6 @@ class Service extends StatelessWidget {
           color: MColors.iconColor1,
           onPressed: () => Get.find<HomeScreenController>().updateIndex(index: 0),
         ),
-        // leading: IconButton(
-        //   padding: EdgeInsets.zero,
-        //   constraints: const BoxConstraints(),
-        //   onPressed: () => Get.find<HomeScreenController>().updateIndex(index: 0),
-        //   icon: const Icon(Icons.chevron_left),
-        // ),
         title: Text('Services', style: MTextTheme.headlineMedium.copyWith(fontSize: 16.sp)),
         centerTitle: true,
       ),

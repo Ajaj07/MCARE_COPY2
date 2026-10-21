@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../common/widgets/Buttons/secondary_button.dart';
 import '../../../common/widgets/images/comon_profile.dart';
 import '../../../utils/constants/colors.dart';
@@ -251,9 +252,7 @@ class VisiteCompletedCard extends StatelessWidget {
                 Expanded(
                   child: MSButton2(
                     label: 'Next Appointment',
-                    buttonStyle: ButtonStyle(
-                      padding: const WidgetStatePropertyAll(EdgeInsets.zero),
-                    ),
+                    buttonStyle: ButtonStyle(padding: const WidgetStatePropertyAll(EdgeInsets.zero)),
                   ),
                 ),
               ],
@@ -264,13 +263,11 @@ class VisiteCompletedCard extends StatelessWidget {
     );
   }
 
+  /*
   PersistentBottomSheetController reviewBottomSheet(BuildContext context) {
     return showBottomSheet(
       backgroundColor: Colors.white,
-      sheetAnimationStyle: AnimationStyle(
-        duration: Duration(seconds: 2),
-        curve: FlippedCurve(Curves.decelerate),
-      ),
+      sheetAnimationStyle: AnimationStyle(duration: Duration(seconds: 1), curve: FlippedCurve(Curves.decelerate)),
       context: context,
       builder: (context) {
         return Container(
@@ -288,10 +285,7 @@ class VisiteCompletedCard extends StatelessWidget {
                 child: Container(
                   width: 60,
                   height: 4,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFA6CFD5),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
+                  decoration: BoxDecoration(color: Color(0xFFA6CFD5), borderRadius: BorderRadius.circular(4)),
                 ),
               ),
 
@@ -299,23 +293,12 @@ class VisiteCompletedCard extends StatelessWidget {
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Review',
-                    style: MTextTheme.bold.copyWith(color: Color(0XFF090909)),
-                  ),
-                ],
+                children: [Text('Review', style: MTextTheme.bold.copyWith(color: Color(0XFF090909)))],
               ),
               SizedBox(height: 20),
 
               /// rating section
-              Text(
-                'Ratings',
-                style: MTextTheme.semiBold.copyWith(
-                  color: MColors.textSecondaryColor,
-                  fontSize: 16,
-                ),
-              ),
+              Text('Ratings', style: MTextTheme.semiBold.copyWith(color: MColors.textSecondaryColor, fontSize: 16)),
               SizedBox(height: 10),
               // rsting row
               Row(
@@ -336,13 +319,7 @@ class VisiteCompletedCard extends StatelessWidget {
               SizedBox(height: 10),
 
               /// your review section
-              Text(
-                'Your review',
-                style: MTextTheme.semiBold.copyWith(
-                  color: MColors.textSecondaryColor,
-                  fontSize: 16,
-                ),
-              ),
+              Text('Your review', style: MTextTheme.semiBold.copyWith(color: MColors.textSecondaryColor, fontSize: 16)),
               SizedBox(height: 10),
               // text Field
               SizedBox(
@@ -354,37 +331,22 @@ class VisiteCompletedCard extends StatelessWidget {
                   textAlignVertical: TextAlignVertical.top,
                   decoration: InputDecoration(
                     hintText: 'Write your review',
-                    hintStyle: MTextTheme.labelMedium.copyWith(
-                      color: MColors.textThirtyColor,
-                    ),
-                    contentPadding: const EdgeInsets.only(
-                      top: 14,
-                      right: 16,
-                      bottom: 14,
-                      left: 16,
-                    ),
+                    hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
+                    contentPadding: const EdgeInsets.only(top: 14, right: 16, bottom: 14, left: 16),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                        color: Color(0xFFE3E3E3),
-                        width: 1,
-                      ),
+                      borderSide: const BorderSide(color: Color(0xFFE3E3E3), width: 1),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(6),
                       borderSide: const BorderSide(
-                        color: Color(
-                          0xFFE3E3E3,
-                        ), // You might want to change this to your primary color on focus
+                        color: Color(0xFFE3E3E3), // You might want to change this to your primary color on focus
                         width: 1,
                       ),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                        color: Color(0xFFE3E3E3),
-                        width: 1,
-                      ),
+                      borderSide: const BorderSide(color: Color(0xFFE3E3E3), width: 1),
                     ),
                   ),
                 ),
@@ -403,10 +365,7 @@ class VisiteCompletedCard extends StatelessWidget {
                       ),
                       child: Text(
                         'Cancel',
-                        style: MTextTheme.semiBold.copyWith(
-                          fontSize: 16,
-                          color: MColors.primaryColor,
-                        ),
+                        style: MTextTheme.semiBold.copyWith(fontSize: 16, color: MColors.primaryColor),
                       ),
                     ),
                   ),
@@ -414,16 +373,8 @@ class VisiteCompletedCard extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: MColors.primaryColor,
-                      ),
-                      child: Text(
-                        'Reschedule',
-                        style: MTextTheme.semiBold.copyWith(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
+                      style: ElevatedButton.styleFrom(backgroundColor: MColors.primaryColor),
+                      child: Text('Reschedule', style: MTextTheme.semiBold.copyWith(fontSize: 16, color: Colors.white)),
                     ),
                   ),
                 ],
@@ -434,6 +385,139 @@ class VisiteCompletedCard extends StatelessWidget {
       },
     );
   }
+*/
+}
+
+Future<void> reviewBottomSheet(BuildContext context) {
+  return showModalBottomSheet<void>(
+    context: context,
+    backgroundColor: Colors.white,
+    isDismissible: true,
+    enableDrag: true,
+    isScrollControlled: true,
+    useSafeArea: true,
+    constraints: const BoxConstraints(maxWidth: double.infinity),
+    sheetAnimationStyle: AnimationStyle(duration: const Duration(seconds: 1), curve: FlippedCurve(Curves.decelerate)),
+    builder: (context) {
+      return Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          decoration: BoxDecoration(color: Color(0XFFFFFFFF), borderRadius: BorderRadius.circular(20.r)),
+          width: double.infinity,
+          child: SafeArea(
+            top: false,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  /// custom drag indicator
+                  Center(
+                    child: Container(
+                      width: 60.w,
+                      height: 4.h,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFA6CFD5),
+                        borderRadius: BorderRadius.circular(4.r),
+                      ),
+                    ),
+                  ),
+
+                  /// Review title
+                  SizedBox(height: 20.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Text('Review', style: MTextTheme.bold.copyWith(color: const Color(0XFF090909)))],
+                  ),
+                  SizedBox(height: 20.h),
+
+                  /// rating section
+                  Text(
+                    'Ratings',
+                    style: MTextTheme.semiBold.copyWith(color: MColors.textSecondaryColor, fontSize: 16.sp),
+                  ),
+                  SizedBox(height: 10.h),
+                  Row(
+                    spacing: 2.w,
+                    children: List.generate(
+                      5,
+                      (_) => Icon(Icons.star_border_rounded, color: const Color(0XFFFFA740), size: 24.sp),
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+
+                  /// your review section
+                  Text(
+                    'Your review',
+                    style: MTextTheme.semiBold.copyWith(color: MColors.textSecondaryColor, fontSize: 16.sp),
+                  ),
+                  SizedBox(height: 10.h),
+                  SizedBox(
+                    height: 100.h,
+                    width: double.infinity,
+                    child: TextField(
+                      maxLines: null,
+                      expands: true,
+                      textAlignVertical: TextAlignVertical.top,
+                      decoration: InputDecoration(
+                        hintText: 'Write your review',
+                        hintStyle: MTextTheme.labelMedium.copyWith(color: MColors.textThirtyColor),
+                        contentPadding: EdgeInsets.fromLTRB(16.w, 14.h, 16.w, 14.h),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6.r),
+                          borderSide: const BorderSide(color: Color(0xFFE3E3E3), width: 1),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6.r),
+                          borderSide: const BorderSide(color: Color(0xFFE3E3E3), width: 1),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6.r),
+                          borderSide: const BorderSide(color: Color(0xFFE3E3E3), width: 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+
+                  /// buttons
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () => Get.back(),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side: BorderSide(width: 1, color: MColors.thirtyColor),
+                          ),
+                          child: Text(
+                            'Cancel',
+                            style: MTextTheme.semiBold.copyWith(fontSize: 16.sp, color: MColors.primaryColor),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(backgroundColor: MColors.primaryColor),
+                          child: Text(
+                            'Reschedule',
+                            style: MTextTheme.semiBold.copyWith(fontSize: 16.sp, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }
 
 class Button extends StatelessWidget {
@@ -447,8 +531,7 @@ class Button extends StatelessWidget {
       onTap: callback,
       borderRadius: BorderRadius.circular(100.r),
       child: Container(
-        alignment:
-            Alignment.center, // <-- centers child regardless of Expanded width
+        alignment: Alignment.center, // <-- centers child regardless of Expanded width
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.h),
         decoration: BoxDecoration(
           color: Colors.transparent,
@@ -480,17 +563,9 @@ class DescriptionRow extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Date& Time',
-                style: MTextTheme.bodyMedium.copyWith(
-                  color: MColors.textThirtyColor,
-                ),
-              ),
+              Text('Date& Time', style: MTextTheme.bodyMedium.copyWith(color: MColors.textThirtyColor)),
               // SizedBox(height: 12),
-              Text(
-                'Wednesday, 29 Feb 04.00 pm',
-                style: MTextTheme.bodyLarge.copyWith(fontSize: 12.sp),
-              ),
+              Text('Wednesday, 29 Feb 04.00 pm', style: MTextTheme.bodyLarge.copyWith(fontSize: 12.sp)),
             ],
           ),
         ),
@@ -500,12 +575,7 @@ class DescriptionRow extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Location',
-                style: MTextTheme.bodyMedium.copyWith(
-                  color: MColors.textThirtyColor,
-                ),
-              ),
+              Text('Location', style: MTextTheme.bodyMedium.copyWith(color: MColors.textThirtyColor)),
               // SizedBox(height: 12),
               Text(
                 'Bella Vista Surgery Clinic, Via Garibaldi 10, Milan, Italy',
@@ -532,17 +602,9 @@ class ProfileRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Dr. Giovanni Bianchi',
-              style: MTextTheme.semiBold.copyWith(fontSize: 16.sp),
-            ),
+            Text('Dr. Giovanni Bianchi', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
             // SizedBox(height: 10),
-            Text(
-              'General Surgery',
-              style: MTextTheme.bodyMedium.copyWith(
-                color: MColors.textSecondaryColor,
-              ),
-            ),
+            Text('General Surgery', style: MTextTheme.bodyMedium.copyWith(color: MColors.textSecondaryColor)),
           ],
         ),
         ComonProfile(

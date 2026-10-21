@@ -5,6 +5,7 @@ import 'package:mcare_copy2/features/authentication/verification/phone_verificat
 import 'package:mcare_copy2/features/history/history.dart';
 import 'package:mcare_copy2/features/home/screens/home.dart';
 import 'package:mcare_copy2/features/onBoarding/onboarding.dart';
+import 'package:mcare_copy2/features/profile/screens/notifications/notifications.dart';
 import 'package:mcare_copy2/features/profile/screens/percription_history/percription_history.dart';
 import 'package:mcare_copy2/features/service/chat_doctor/doctor_details/appointment_Suceess/sucess_screen.dart';
 import 'package:mcare_copy2/features/service/hospitals/screens/detail_hospital/detail_hospital.dart';
@@ -14,6 +15,9 @@ import 'package:mcare_copy2/features/service/medication_remainder/medication_rem
 import 'package:mcare_copy2/features/service/medication_remainder/screens/detail_about_drug/detail_about_drug.dart';
 import 'package:mcare_copy2/features/service/medication_remainder/screens/medication_remainder/medication_remainder_empty.dart';
 import 'package:mcare_copy2/features/service/service.dart';
+import 'package:mcare_copy2/features/service/shopping/screens/cart_before/cart_before.dart';
+import 'package:mcare_copy2/features/service/shopping/screens/cart_empty/cart_empty.dart';
+import 'package:mcare_copy2/features/service/shopping/screens/description/description_medicine.dart';
 import 'package:mcare_copy2/splash/splash_screen1.dart';
 import 'package:mcare_copy2/splash/splash_screen2.dart';
 import '../../features/authentication/login/login.dart';
@@ -23,6 +27,7 @@ import '../../features/authentication/verification/email_verification.dart';
 import '../../features/history/screens/history_empty.dart';
 import '../../features/profile/screens/account_setting/account_setting.dart';
 import '../../features/profile/screens/health_history/health_history.dart';
+import '../../features/profile/screens/notifications/empty_notification.dart';
 import '../../features/profile/screens/transctions/transactions.dart';
 import '../../features/service/articel/articel_list.dart';
 import '../../features/service/articel/screens/article.dart';
@@ -31,6 +36,10 @@ import '../../features/service/chat_doctor/doctor_details/conformation/conformat
 import '../../features/service/chat_doctor/doctor_details/screen/chat_screen.dart';
 import '../../features/service/chat_doctor/doctor_details/screen/doctor_details/doctor_details.dart';
 import '../../features/service/medication_remainder/screens/medication_remainder/medication_remainder_fill.dart';
+import '../../features/service/shopping/screens/description/description_tabbar.dart';
+import '../../features/service/shopping/screens/shopping_filter.dart';
+import '../../features/service/shopping/shopping.dart';
+import '../../features/service/specialist/specialist.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
@@ -114,5 +123,15 @@ class AppPages {
     GetPage(name: AppRoutes.healthHistory, page: () => HealthHistory()),
     GetPage(name: AppRoutes.transactions, page: () => Transactions()),
     GetPage(name: AppRoutes.accountSetting, page: () => AccountSetting()),
+    GetPage(name: AppRoutes.notifications, page: () => Notifications()),
+    GetPage(name: AppRoutes.emptyNotifications, page: () => EmptyNotifications()),
+    GetPage(name: AppRoutes.specialist, page: () => Specialist()),
+    GetPage(name: AppRoutes.shopping, page: () => Shopping()),
+    GetPage(name: AppRoutes.descriptionMedicine, page: () => DescriptionMedicine()),
+    GetPage(name: AppRoutes.descriptionTabbar, page: () => DescriptionTabbar()),
+    GetPage(name: AppRoutes.shoppingFilter, page: () => ShoppingFilter()),
+    GetPage(name: AppRoutes.cartBefore, page: () => CartBefore()),
+    GetPage(name: AppRoutes.cartEmpty, page: () => CartEmpty()),
+    // GetPage(name: AppRoutes.cartBefore, page: () => CartBefore()),
   ];
 }

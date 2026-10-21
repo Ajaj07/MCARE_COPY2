@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mcare_copy2/common/routes/app_routes.dart';
+import 'package:mcare_copy2/common/widgets/Buttons/appbar_button.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
@@ -18,12 +19,7 @@ class HistoryEmpty extends StatelessWidget {
         appBar: AppBar(
           surfaceTintColor: Colors.transparent,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
-            onPressed: () => Get.offAllNamed(AppRoutes.home),
-            icon: Icon(Icons.chevron_left, color: MColors.textSecondaryColor),
-          ),
+          leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
           title: Text('History empty', style: MTextTheme.semiBold.copyWith(fontSize: 16.sp)),
           centerTitle: true,
         ),

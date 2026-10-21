@@ -9,6 +9,7 @@ import '../../../../../common/widgets/Buttons/primary_button.dart';
 import '../../../../../common/widgets/notification/notification_row.dart';
 
 import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/sizes.dart';
 import 'widgets/drug_info_card.dart';
 import 'widgets/medical_detail_card.dart';
 
@@ -97,7 +98,9 @@ class DetailAboutDrug extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 26.w), // Made horizontal page padding responsive
+            padding: EdgeInsets.symmetric(
+              horizontal: MSizes.defaultHorizontalPadding,
+            ), // Made horizontal page padding responsive
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -124,14 +127,17 @@ class DetailAboutDrug extends StatelessWidget {
 
       bottomNavigationBar: SafeArea(
         child: Container(
+          color: Colors.transparent,
+          width: double.infinity,
           padding: EdgeInsets.only(
-            left: 28.w, // Made bottom bar horizontal padding responsive
-            right: 28.w,
+            left: MSizes.defaultHorizontalPadding,
+            right: MSizes.defaultHorizontalPadding,
             bottom: 30.h, // Made bottom bar vertical spacing responsive
           ),
-          width: double.infinity,
-          height: 85.h, // Increased from 70 to give adequate space for the button layout with .h scalability
-          child: MPButton2(label: 'save', callback: () => Get.toNamed(AppRoutes.medicationRemainderFill)),
+          child: SizedBox(
+            height: 51.h,
+            child: MPButton2(label: 'save', callback: () => Get.toNamed(AppRoutes.medicationRemainderFill)),
+          ),
         ),
       ),
     );

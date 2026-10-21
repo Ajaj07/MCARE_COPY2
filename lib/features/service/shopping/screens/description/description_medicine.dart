@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:mcare_copy2/common/routes/app_routes.dart';
 import 'package:mcare_copy2/features/service/shopping/widgets/medicine_card.dart';
 
 import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 
+import '../../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../../common/widgets/Buttons/primary_button.dart';
 import '../../../../../common/widgets/review/review.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -264,12 +267,7 @@ class DescriptionMedicine extends StatelessWidget {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        leading: IconButton(
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios_new, size: 20.sp, color: MColors.textSecondaryColor),
-        ),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
         actions: [
           IconButton(
             onPressed: () {},
@@ -402,7 +400,7 @@ class DescriptionMedicine extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 100.h),
                 ],
               ),
             ),
@@ -411,9 +409,11 @@ class DescriptionMedicine extends StatelessWidget {
               left: 24.w,
               right: 24.w,
               bottom: 20.h,
-              child: SizedBox(
-                height: 45.h,
-                child: MPButton2(label: 'Add to Cart'),
+              child: SafeArea(
+                child: SizedBox(
+                  height: 51.h,
+                  child: MPButton2(label: 'Add to Cart', callback: () => Get.toNamed(AppRoutes.descriptionTabbar)),
+                ),
               ),
             ),
           ],

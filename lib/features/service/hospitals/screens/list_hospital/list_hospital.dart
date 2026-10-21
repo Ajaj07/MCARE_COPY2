@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../../../common/widgets/Buttons/appbar_button.dart';
+import '../../../../../common/widgets/searchBar/search_bar.dart';
 import '../../../../../utils/theme/widget/text_theme_screen_util.dart';
 // import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 /// uses normal Text Them file
@@ -125,12 +127,7 @@ class ListHospital extends StatelessWidget {
         // Automatically handles back button spacing, but uses your custom icon
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        leading: IconButton(
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-          onPressed: () => Get.back(),
-          icon: const Icon(Icons.chevron_left),
-        ),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
         // titleSpacing ensures the search bar sits closely next to the back button
         titleSpacing: 0,
         title: Padding(
@@ -138,17 +135,7 @@ class ListHospital extends StatelessWidget {
           padding: EdgeInsets.only(right: 26.w),
           child: SizedBox(
             height: 48.h, // Make sure 48.h fits inside your target device's AppBar height
-            child: SearchBar(
-              hintText: 'Search product or store',
-              hintStyle: WidgetStatePropertyAll(
-                TextStyle(color: MColors.textThirtyColor, fontSize: 14.sp, fontFamily: 'Khula'),
-              ),
-              leading: Icon(Icons.search, color: MColors.textThirtyColor, size: 22.sp),
-              elevation: const WidgetStatePropertyAll(0),
-              backgroundColor: const WidgetStatePropertyAll(Color(0xFFF9F9F9)),
-              side: WidgetStatePropertyAll(BorderSide(color: MColors.thirtyColor, width: 1.w)),
-              shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
-            ),
+            child: CustomSearchBar(),
           ),
         ),
       ),

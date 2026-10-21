@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mcare_copy2/common/widgets/Buttons/secondary_button.dart';
 
+import '../../../../common/routes/app_routes.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/theme/widget/text_theme_screen_util.dart';
 
@@ -82,7 +84,7 @@ import '../../../../utils/theme/widget/text_theme_screen_util.dart';
   }
 }
 */
-
+/*
 class MedicineCard extends StatelessWidget {
   const MedicineCard({super.key, required this.imageName, required this.medicineName, required this.price});
   final String imageName, medicineName, price;
@@ -152,6 +154,94 @@ class MedicineCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+*/
+
+class MedicineCard extends StatelessWidget {
+  MedicineCard({
+    super.key,
+    required this.imageName,
+    required this.medicineName,
+    required this.price,
+    this.unitLabel = 'Per Strip',
+    this.onTap,
+    this.onAdd,
+    this.defaultRoute = true,
+  });
+
+  final String imageName, medicineName, price, unitLabel;
+  final VoidCallback? onTap, onAdd;
+  final bool defaultRoute;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      // onTap: onTap ?? () => Get.toNamed(AppRoutes.descriptionMedicine),
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12.r),
+      child: Container(
+        width: 178.w,
+        padding: EdgeInsets.fromLTRB(12.w, 3.h, 12.w, 10.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: const Color(0xFFE3E3E3)),
+          boxShadow: [
+            BoxShadow(offset: const Offset(0, 4), blurRadius: 10, color: Colors.black.withValues(alpha: 0.04)),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+              flex: 100, // much bigger than Spacer's flex, so the image keeps full size whenever there's room
+              child: Container(
+                width: 155.w,
+                height: 123.h,
+                alignment: Alignment.center,
+                color: Colors.white,
+                child: Image.asset(imageName, fit: BoxFit.contain),
+              ),
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              medicineName,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: MTextTheme.semiBold.copyWith(fontSize: 14.sp),
+            ),
+            SizedBox(height: 2.h),
+            Text(unitLabel, style: MTextTheme.bodyMedium.copyWith(color: MColors.textThirtyColor)),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Starts from',
+                      style: MTextTheme.bodyMedium.copyWith(fontSize: 10.sp, color: MColors.textThirtyColor),
+                    ),
+                    SizedBox(height: 2.h),
+                    Text(price, style: MTextTheme.bold),
+                  ],
+                ),
+                SizedBox(width: 5.w),
+                Expanded(
+                  child: MSButton2(
+                    label: 'Add',
+                    callback: onAdd,
+                    // onPressed: onAdd,
+                    buttonStyle: ButtonStyle(side: WidgetStatePropertyAll(BorderSide(color: MColors.primaryColor))),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mcare_copy2/common/routes/app_routes.dart';
 import 'package:mcare_copy2/features/home/controller/home_screen_controller.dart';
+import 'package:mcare_copy2/features/profile/screens/notifications/empty_notification.dart';
 import 'package:mcare_copy2/utils/constants/colors.dart';
 import '../../common/widgets/Buttons/appbar_button.dart';
 import '../../common/widgets/Buttons/secondary_button.dart';
@@ -154,11 +154,6 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark, // Android: dark icons
-          statusBarBrightness: Brightness.light, // iOS: dark icons (this is inverted on iOS)
-        ),
         leading: AppbarButton(
           icon: Icons.chevron_left,
           color: MColors.iconColor1,
@@ -250,13 +245,22 @@ class Profile extends StatelessWidget {
                         spacing: 15.h,
                         children: [
                           // 1. Account Settings
-                          SettingsMenuItem(iconPath: 'assets/icons/svg/settings.svg', label: 'Account Settings'),
+                          SettingsMenuItem(
+                            iconPath: 'assets/icons/svg/settings.svg',
+                            callback: () => Get.toNamed(AppRoutes.accountSetting),
+                            label: 'Account Settings',
+                          ),
 
                           // 2. Notification
-                          SettingsMenuItem(iconPath: 'assets/icons/svg/solar_bell.svg', label: 'Notification'),
+                          SettingsMenuItem(
+                            iconPath: 'assets/icons/svg/solar_bell.svg',
+                            callback: () => Get.toNamed(AppRoutes.notifications),
+                            label: 'Notification',
+                          ),
 
                           // 3. Reference Settings
                           SettingsMenuItem(
+                            callback: () => Get.to(() => const EmptyNotifications()),
                             iconPath: 'assets/icons/svg/reffrence_setting.svg',
                             label: 'Reference Settings',
                           ),

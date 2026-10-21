@@ -113,7 +113,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
+import '../../../../../common/widgets/Buttons/appbar_button.dart';
 import '../../../../../common/widgets/images/comon_profile.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/theme/widget/text_theme.dart';
@@ -126,48 +128,50 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(preferredSize: Size.fromHeight(kToolbarHeight), child: ChatScreenAppBar()),
-      body: Column(
-        children: [
-          const SizedBox(height: 12),
-          const ChatDateDivider(label: 'Today'),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              children: const [
-                ChatBubble(
-                  message: 'Hello Doctor! I\'d like to schedule an appointment for a medical consultation',
-                  time: '09:32 PM',
-                  isSent: true,
-                ),
-                SizedBox(height: 16),
-                ChatBubble(
-                  message:
-                      'Hello! Of course, I\'m glad to assist you. '
-                      'What health concerns are you experiencing?',
-                  time: '09:32 PM',
-                  isSent: false,
-                ),
-                SizedBox(height: 16),
-                ChatBubble(
-                  message: 'I\'ve been experiencing constant headaches over the past few days',
-                  time: '09:32 PM',
-                  isSent: true,
-                ),
-                SizedBox(height: 16),
-                ChatBubble(
-                  message:
-                      'I understand. Let\'s schedule your appointment. '
-                      'Do you have any specific time preferences?',
-                  time: '09:32 PM',
-                  isSent: false,
-                ),
-                SizedBox(height: 16),
-                ChatBubble(message: 'I prefer Monday mornings, if possible.', time: '09:32 PM', isSent: true),
-              ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 12),
+            const ChatDateDivider(label: 'Today'),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                children: const [
+                  ChatBubble(
+                    message: 'Hello Doctor! I\'d like to schedule an appointment for a medical consultation',
+                    time: '09:32 PM',
+                    isSent: true,
+                  ),
+                  SizedBox(height: 16),
+                  ChatBubble(
+                    message:
+                        'Hello! Of course, I\'m glad to assist you. '
+                        'What health concerns are you experiencing?',
+                    time: '09:32 PM',
+                    isSent: false,
+                  ),
+                  SizedBox(height: 16),
+                  ChatBubble(
+                    message: 'I\'ve been experiencing constant headaches over the past few days',
+                    time: '09:32 PM',
+                    isSent: true,
+                  ),
+                  SizedBox(height: 16),
+                  ChatBubble(
+                    message:
+                        'I understand. Let\'s schedule your appointment. '
+                        'Do you have any specific time preferences?',
+                    time: '09:32 PM',
+                    isSent: false,
+                  ),
+                  SizedBox(height: 16),
+                  ChatBubble(message: 'I prefer Monday mornings, if possible.', time: '09:32 PM', isSent: true),
+                ],
+              ),
             ),
-          ),
-          const ChatInputBar(),
-        ],
+            const ChatInputBar(),
+          ],
+        ),
       ),
     );
   }
@@ -305,7 +309,7 @@ class ChatScreenAppBar extends StatelessWidget {
     return AppBar(
       surfaceTintColor: Colors.transparent,
       titleSpacing: 0,
-      leading: Icon(Icons.arrow_back_ios_new_rounded, color: MColors.textSecondaryColor),
+      leading: AppbarButton(icon: Icons.chevron_left, onPressed: () => Get.back(), color: MColors.iconColor1),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

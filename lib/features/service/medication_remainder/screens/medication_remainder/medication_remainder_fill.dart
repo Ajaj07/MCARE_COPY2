@@ -90,13 +90,15 @@ class MedicationRemainderFill extends StatelessWidget {
           Spacer(),
 
           ///----------------------[Add Medicine]------------------------------
-          SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: EdgeInsets.only(left: 26.w, right: 26.w, bottom: 40.h),
-              child: SizedBox(
-                height: 51.h,
-                child: MPButton2(label: 'Add Medicine'),
+          SafeArea(
+            child: SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: EdgeInsets.only(left: 26.w, right: 26.w, bottom: 40.h),
+                child: SizedBox(
+                  height: 51.h,
+                  child: MPButton2(label: 'Add Medicine'),
+                ),
               ),
             ),
           ),

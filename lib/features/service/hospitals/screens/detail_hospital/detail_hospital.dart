@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mcare_copy2/common/routes/app_routes.dart';
-// import 'package:mcare_copy2/utils/theme/widget/text_theme.dart';
 import '../../../../../common/widgets/Buttons/primary_button.dart';
 import '../../../../../common/widgets/Buttons/secondary_button.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -336,7 +335,6 @@ class _DetailHospitalState extends State<DetailHospital> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 26.w),
@@ -409,29 +407,35 @@ class _DetailHospitalState extends State<DetailHospital> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: kBottomNavigationBarHeight,
-        color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 10.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SizedBox(
-              width: 105.w,
-              child: MSButton2(
-                label: 'Maps',
-                buttonStyle: ButtonStyle(side: WidgetStatePropertyAll(BorderSide(color: MColors.primaryColor))),
-                callback: () => Get.toNamed(AppRoutes.hospitalMaps),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          width: double.infinity,
+          // height: kBottomNavigationBarHeight,
+          color: Colors.white,
+          padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 10.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SizedBox(
+                width: 105.w,
+                height: 51.h,
+                child: MSButton2(
+                  label: 'Maps',
+                  buttonStyle: ButtonStyle(side: WidgetStatePropertyAll(BorderSide(color: MColors.primaryColor))),
+                  callback: () => Get.toNamed(AppRoutes.hospitalMaps),
+                ),
               ),
-            ),
 
-            SizedBox(width: 10.w),
-            Expanded(
-              child: MPButton2(label: 'Contact Now', callback: () => Get.toNamed(AppRoutes.listHospital)),
-            ),
-          ],
+              SizedBox(width: 10.w),
+              Expanded(
+                child: SizedBox(
+                  height: 51.h,
+                  child: MPButton2(label: 'Contact Now', callback: () => Get.toNamed(AppRoutes.listHospital)),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

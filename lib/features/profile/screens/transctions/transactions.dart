@@ -18,7 +18,7 @@ class Transactions extends StatelessWidget {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         centerTitle: true,
-        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.textSecondaryColor, onPressed: () => Get.back()),
+        leading: AppbarButton(icon: Icons.chevron_left, color: MColors.iconColor1, onPressed: () => Get.back()),
         title: Text(
           'TransActions History',
           style: MTextTheme.semiBold.copyWith(fontSize: 16.sp), // Made text size responsive using .sp
